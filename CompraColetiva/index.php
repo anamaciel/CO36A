@@ -11,18 +11,17 @@ require_once("class/pdo.class.php");
 require_once("caminho.php");
 
 $atual = ($_GET['pg'] != '') ? $_GET['pg'] : 'home';
-$permissao = array('index', 'login', 'home', 'termos', 'perguntas', 'cadastro');
+$permissao = array('index', 'login', 'home', 'termos', 'perguntas', 'cadastro', 'contato', 'ofertas', 'ofertas_passadas');
 
 if (substr_count($atual, '/') > 0) {
     $atual = explode('/', $atual);
-    $pagina = (!file_exists($caminho . "site/" . $atual[0] . '.php') && in_array($atual[0], $permissao)) ? $atual[0] : 'erro';
+    $pagina = (!file_exists($caminho . "site/" . $atual[0] . '.php') && in_array($atual[0], $permissao)) ? $atual[0] : 'home';
     $id = anti_injection($atual[1]);
     $id2 = anti_injection($atual[2]);
 } else {
-    $pagina = (!file_exists($caminho . "site/" . $atual . '.php') && in_array($atual, $permissao)) ? $atual : 'erro';
+    $pagina = (!file_exists($caminho . "site/" . $atual . '.php') && in_array($atual, $permissao)) ? $atual : 'home';
     $id = 0;
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -35,16 +34,19 @@ if (substr_count($atual, '/') > 0) {
         <link rel="stylesheet" href="<?php echo $caminho; ?>css/style.css">
         <link rel="stylesheet" href="<?php echo $caminho; ?>css/form.css">
         <link rel="stylesheet" href="<?php echo $caminho; ?>css/slider.css">
+        <link rel="stylesheet" href="<?php echo $caminho; ?>css/touchTouch.css">
         <script src="<?php echo $caminho; ?>js/jquery.js"></script>
+        <script src="<?php echo $caminho; ?>js/sForm.js"></script>
         <script src="<?php echo $caminho; ?>js/jquery-migrate-1.1.1.js"></script>
         <script src="<?php echo $caminho; ?>js/superfish.js"></script>
-        <script src="<?php echo $caminho; ?>js/sForm.js"></script>
         <script src="<?php echo $caminho; ?>js/jquery.jqtransform.js"></script>
         <script src="<?php echo $caminho; ?>js/jquery.equalheights.js"></script>
         <script src="<?php echo $caminho; ?>js/jquery.easing.1.3.js"></script>
         <script src="<?php echo $caminho; ?>js/tms-0.4.1.js"></script>
         <script src="<?php echo $caminho; ?>js/jquery-ui-1.10.3.custom.min.js"></script>
         <script src="<?php echo $caminho; ?>js/jquery.ui.totop.js"></script>
+        <script src="<?php echo $caminho; ?>js/touchTouch.jquery.js"></script>
+
         <script>
             $(window).load(function() {
                 $('.slider')._TMS({
@@ -89,7 +91,7 @@ if (substr_count($atual, '/') > 0) {
         <header> 
             <div class="container_12">
                 <div class="grid_12"> 
-                    <h1><a href="_index.html"><img src="<?php echo $caminho; ?>images/logo.png" alt="Gerald Harris attorney at law"></a> </h1>
+                    <h1><a href="<?php echo $caminho; ?>site/"><img src="<?php echo $caminho; ?>images/logo.png" alt="logo"></a> </h1>
 
 
                     <div class="clear"></div>
@@ -97,18 +99,18 @@ if (substr_count($atual, '/') > 0) {
                 <div class="menu_block">
                     <nav class="" >
                         <ul class="sf-menu">
-                            <li class="current"><a href="_index.html">Home</a></li>
-                            <li class="with_ul"><a href="index-1.html">About</a>
+                            <li class="current"><a href="<?php echo $caminho; ?>site/">Home</a></li>
+                            <li class="with_ul"><a href="<?php echo $caminho; ?>site/ofertas">Ofertas</a>
                                 <ul>
                                     <li><a href="#"> Agency</a></li>
                                     <li><a href="#">News</a></li>
                                     <li><a href="#">Team</a></li>
                                 </ul>
                             </li>
-                            <li><a href="index-2.html">Gallery</a></li>
-                            <li><a href="index-3.html">Tours</a></li>
-                            <li><a href="index-4.html">Blog</a></li>
-                            <li><a href="index-5.html">Contacts</a></li>
+                            <li><a href="<?php echo $caminho; ?>site/ofertas_passadas">Ofertas Passadas</a></li>
+                            <li><a href="<?php echo $caminho; ?>site/">Tours</a></li>
+                            <li><a href="<?php echo $caminho; ?>site/cadastro">Cadastro</a></li>
+                            <li><a href="<?php echo $caminho; ?>site/contato">Contato</a></li>
                         </ul>
                     </nav>
                     <div class="clear"></div>
@@ -118,6 +120,7 @@ if (substr_count($atual, '/') > 0) {
         </header>
 
         <div class="main">
+            <div class="login" onclick="javascript:location.href='<?php echo $caminho; ?>site/login'">Login</div>
             <!--=======content================================-->
             <?php
             include("{$pasta}/" . anti_injection($pagina) . ".php");
