@@ -2,11 +2,29 @@
 if (!isset($_SESSION)) {
     session_start();
 }
+$vlM = 0;
+error_reporting(E_ALL);
+ini_set('display_errors', 'off');
+
+require_once("class/funcoes.php");
 require_once("class/pdo.class.php");
 require_once("caminho.php");
 
-$banco = new cPDO();
+$atual = ($_GET['pg'] != '') ? $_GET['pg'] : 'home';
+$permissao = array('index', 'login', 'home', 'termos', 'perguntas', 'cadastro');
+
+if (substr_count($atual, '/') > 0) {
+    $atual = explode('/', $atual);
+    $pagina = (!file_exists($caminho . "site/" . $atual[0] . '.php') && in_array($atual[0], $permissao)) ? $atual[0] : 'erro';
+    $id = anti_injection($atual[1]);
+    $id2 = anti_injection($atual[2]);
+} else {
+    $pagina = (!file_exists($caminho . "site/" . $atual . '.php') && in_array($atual, $permissao)) ? $atual : 'erro';
+    $id = 0;
+}
+
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
@@ -15,6 +33,7 @@ $banco = new cPDO();
         <link rel="icon" href="<?php echo $caminho; ?>images/favicon.ico">
         <link rel="shortcut icon" href="<?php echo $caminho; ?>images/favicon.ico" />
         <link rel="stylesheet" href="<?php echo $caminho; ?>css/style.css">
+        <link rel="stylesheet" href="<?php echo $caminho; ?>css/form.css">
         <link rel="stylesheet" href="<?php echo $caminho; ?>css/slider.css">
         <script src="<?php echo $caminho; ?>js/jquery.js"></script>
         <script src="<?php echo $caminho; ?>js/jquery-migrate-1.1.1.js"></script>
@@ -76,7 +95,7 @@ $banco = new cPDO();
                     <div class="clear"></div>
                 </div>
                 <div class="menu_block">
-                    <nav	class="" >
+                    <nav class="" >
                         <ul class="sf-menu">
                             <li class="current"><a href="_index.html">Home</a></li>
                             <li class="with_ul"><a href="index-1.html">About</a>
@@ -99,174 +118,11 @@ $banco = new cPDO();
         </header>
 
         <div class="main">
-            <div class="container_12">
-                <div class="grid_12">
-                    <div class="slider-relative">
-                        <div class="slider-block">
-                            <div class="slider">
-                                <a href="#" class="prev"></a><a href="#" class="next"></a>
-                                <ul class="items">
-                                    <li><img src="<?php echo $caminho; ?>images/slide.jpg" alt="">
-                                        <div class="banner">
-                                            <div>THERE ARE PLENTY OF PLACES</div><br>
-                                            <span> that are worth seeing</span>
-                                        </div>
-                                    </li>
-                                    <li><img src="<?php echo $caminho; ?>images/slide1.jpg" alt=""></li>
-                                    <li><img src="<?php echo $caminho; ?>images/slide2.jpg" alt=""></li>
-                                    <li><img src="<?php echo $caminho; ?>images/slide3.jpg" alt=""></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div></div>
-
             <!--=======content================================-->
+            <?php
+            include("{$pasta}/" . anti_injection($pagina) . ".php");
+            ?>
 
-            <div class="content"><div class="ic">More Website Templates @ TemplateMonster.com - August 05, 2013!</div>
-                <div class="container_12">
-                    <div class="grid_12">
-                        <h3>Top Destinations</h3>
-                    </div>
-                    <div class="boxes">
-                        <div class="grid_4">
-                            <figure>
-                                <div><img src="<?php echo $caminho; ?>images/page1_img1.jpg" alt=""></div>
-                                <figcaption>
-                                    <h3>Venice</h3>
-                                    Lorem ipsum dolor site geril amet, consectetur cing eliti. Suspendisse nulla leo mew dignissim eu velite a rew qw vehicula lacinia arcufasec ro. Aenean lacinia ucibusy fase tortor ut feugiat. Rabi tur oliti aliquam bibendum olor quis malesuadivamu.
-                                    <a href="" class="btn">Details</a>
-                                </figcaption>
-                            </figure>
-                        </div>
-                        <div class="grid_4">
-                            <figure>
-                                <div><img src="<?php echo $caminho; ?>images/page1_img2.jpg" alt=""></div>
-                                <figcaption>
-                                    <h3>New York</h3>
-                                    Psum dolor sit ametylo gerto consectetur ertori hykill holit adipiscing lity. Donecto rtopil osueremo	kollit asec emmodem geteq tiloli. Aliquam dapibus neclol nami wertoli elittro eget vulpoli no
-                                    utaterbil congue turpis in su.
-                                    <a href="" class="btn">Details</a>
-
-                                </figcaption>
-                            </figure>
-                        </div>
-                        <div class="grid_4">
-                            <figure>
-                                <div><img src="<?php echo $caminho; ?>images/page1_img3.jpg" alt=""></div>
-                                <figcaption>
-                                    <h3>Paris</h3>
-                                    Lorem ipsum dolor site geril amet, consectetur cing eliti. Suspendisse nulla leo mew dignissim eu velite a rew qw vehicula lacinia arcufasec ro. Aenean lacinia ucibusy fase tortor ut feugiat. Rabi tur oliti aliquam bibendum olor quis malesuadivamu.
-                                    <a href="" class="btn">Details</a>
-                                </figcaption>
-                            </figure>
-                        </div>
-                        <div class="clear"></div>
-                    </div>
-                    <div class="grid_8">
-                        <div id="tabs">
-                            <ul>
-                                <li><a href="#tabs-1">last Minute</a></li>
-                                <li><a href="#tabs-2">hot Deals</a></li>
-                                <li><a href="#tabs-3">All-Inclusive</a></li>
-                            </ul>
-                            <div class="clear"></div>
-                            <div class="tab_cont" id="tabs-1">
-                                <img src="<?php echo $caminho; ?>images/page1_img4.jpg" alt="">
-                                <div class="extra_wrapper">
-                                    <div class="text1">Rem psum dr sit amet. </div>
-                                    <p class="style1"><a class="col2" href="http://blog.templatemonster.com/free-website-templates/" rel="nofollow">Click here</a> for more info about this free website template created by TemplateMonster.com </p>
-
-                                    Nulla facilisi. Ut ut tincidunt lacus, ut auctor libero. Duis ommodo vel ipsum sed volutpat. Phasellus a sagittis dui, eu adipiscinget nisiestibulum eutro.
-                                    <a href="#" class="btn">Details</a>
-                                    <div class="clear "></div>
-
-                                </div>
-                                <div class="clear cl1"></div>
-                                <img src="<?php echo $caminho; ?>images/page1_img5.jpg" alt="">
-                                <div class="extra_wrapper">
-                                    <div class="text1 tx1">Hem psuf abr sit dmety. </div>
-                                    Julla facilisi. Ut ut tincidunt lacus, ut auctor libero. Fuis ommodo vel ipsum sed volutpat. Phasellus a sagittis dui, eu adipiscinget nisi. Vestibulum eu eleifend metus, ut ornare nibh. Vestibulumul tincidunt interdum libero vitae faucibus. Gonec dapibus feugiate auctor. In ac dapibus lacus. Maecenas in pharetra mim asellus a sagittis dui, eu adipiscinget nisi. 
-                                    <div class="clear"></div>
-                                    <a href="#" class="btn bt1">Details</a>
-                                    <div class="clear "></div>
-
-                                </div>		
-                            </div>
-                            <div class="tab_cont" id="tabs-2">
-                                <img src="<?php echo $caminho; ?>images/page1_img4.jpg" alt="">
-                                <div class="extra_wrapper">
-                                    <div class="text1">Rem psum dr sit amet. </div>
-                                    <p class="style1">Nulla facilisi. Ut ut tincidunt lacus, ut auctor libero. Duis ommodo vel ipsum sed volutpat. Phasellus a sagittis dui, eu adipiscinget nisiestibulum eutro.</p>
-
-                                    Nulla facilisi. Ut ut tincidunt lacus, ut auctor libero. Duis ommodo vel ipsum sed volutpat. Phasellus a sagittis dui, eu adipiscinget nisiestibulum eutro.
-                                    <a href="#" class="btn">Details</a>
-                                    <div class="clear "></div>
-
-                                </div>
-                                <div class="clear cl1"></div>
-                                <img src="<?php echo $caminho; ?>images/page1_img5.jpg" alt="">
-                                <div class="extra_wrapper">
-                                    <div class="text1 tx1">Hem psuf abr sit dmety. </div>
-                                    Julla facilisi. Ut ut tincidunt lacus, ut auctor libero. Fuis ommodo vel ipsum sed volutpat. Phasellus a sagittis dui, eu adipiscinget nisi. Vestibulum eu eleifend metus, ut ornare nibh. Vestibulumul tincidunt interdum libero vitae faucibus. Gonec dapibus feugiate auctor. In ac dapibus lacus. Maecenas in pharetra mim asellus a sagittis dui, eu adipiscinget nisi. 
-                                    <div class="clear"></div>
-                                    <a href="#" class="btn bt1">Details</a>
-                                    <div class="clear "></div>
-
-                                </div>
-                            </div>
-                            <div class="tab_cont" id="tabs-3">
-
-                                <img src="<?php echo $caminho; ?>images/page1_img4.jpg" alt="">
-                                <div class="extra_wrapper">
-                                    <div class="text1">Rem psum dr sit amet. </div>
-                                    <p class="style1">Nulla facilisi. Ut ut tincidunt lacus, ut auctor libero. Duis ommodo vel ipsum sed volutpat. Phasellus a sagittis dui, eu adipiscinget nisiestibulum eutro.</p>
-
-                                    Nulla facilisi. Ut ut tincidunt lacus, ut auctor libero. Duis ommodo vel ipsum sed volutpat. Phasellus a sagittis dui, eu adipiscinget nisiestibulum eutro.
-                                    <a href="#" class="btn">Details</a>
-                                    <div class="clear "></div>
-
-                                </div>
-                                <div class="clear cl1"></div>
-                                <img src="<?php echo $caminho; ?>images/page1_img5.jpg" alt="">
-                                <div class="extra_wrapper">
-                                    <div class="text1 tx1">Hem psuf abr sit dmety. </div>
-                                    Julla facilisi. Ut ut tincidunt lacus, ut auctor libero. Fuis ommodo vel ipsum sed volutpat. Phasellus a sagittis dui, eu adipiscinget nisi. Vestibulum eu eleifend metus, ut ornare nibh. Vestibulumul tincidunt interdum libero vitae faucibus. Gonec dapibus feugiate auctor. In ac dapibus lacus. Maecenas in pharetra mim asellus a sagittis dui, eu adipiscinget nisi. 
-                                    <div class="clear"></div>
-                                    <a href="#" class="btn bt1">Details</a>
-                                    <div class="clear "></div>
-
-                                </div>	
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="grid_4">
-                        <div class="newsletter_title">NewsLetter </div>
-                        <div class="n_container">
-                            <form id="newsletter">
-                                <div class="success">Your subscribe request has been sent!</div>
-                                <div class="text1">Sign up to receive our newsletters </div>
-                                <label class="email">
-                                    <input type="email" value="email address" >
-                                    <span class="error">*This is not a valid email address.</span>
-                                </label> 
-                                <div class="clear"></div> <a href="#" class="" data-type="submit"></a> 
-                            </form> 
-                            <ul class="list">
-                                <li><a href="#">Fgo psu dr sit amek </a></li>
-                                <li><a href="#">Sem psum dr sit ametre </a></li>
-                                <li><a href="#">Rame sum dr sit ame </a></li>
-                                <li><a href="#">Bem psum dr sit ameteko </a></li>
-                                <li><a href="#">Nem dsum dr sit amewas </a></li>
-                                <li><a href="#">Vcem psum dr sit </a></li>
-                                <li><a href="#">Zdfem psum dr sittr amewe </a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="clear"></div></div>
-            </div>
             <div class="bottom_block">
                 <div class="container_12">
                     <div class="grid_2 prefix_2">
