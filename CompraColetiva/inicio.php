@@ -58,7 +58,7 @@ if (substr_count($atual, '/') > 0) {
 
         <!-- JS -->
         <script type="text/javascript" src="<?php echo $caminho; ?>js/jquery-1.7.min.js"></script>
-        <script async defer type="text/javascript" src="http://localhost:80/socket.io/socket.io.js"></script> 
+        <script async defer type="text/javascript" src="http://localhost:8088/socket.io/socket.io.js"></script> 
         <script async defer type="text/javascript" src="<?php echo $caminho; ?>js/pirobox/js/pirobox_extended_feb_2011.js"></script>
         <script async defer type="text/javascript" src="<?php echo $caminho; ?>js/prettyPhoto/jquery.prettyPhoto.js"></script>
         <script type="text/javascript" src="<?php echo $caminho; ?>js/funcoes.js"></script>
@@ -312,7 +312,15 @@ if (substr_count($atual, '/') > 0) {
             </div>
             <script async defer type="text/javascript" src="<?php echo $caminho; ?>js/jquery.alerts.js"></script>
             <script type="text/javascript">
-                var socket=io.connect("http://localhost:80",{reconnect:!0,"reconnection delay":50,"max reconnection attempts":1E3,secure:!1});socket.emit("userconected","");socket.on("showmessage",function(a){document.getElementById("hora").innerHTML=a.hora});
+                var socket=io.connect('http://localhost:8088', {
+					'connect timeout': 500,
+					'reconnect': true,
+					'reconnection delay': 500,
+					'reopen delay': 500,
+					'max reconnection attempts': 10
+				})
+                socket.emit("userconected","");
+                //socket.on("showmessage",function(a){document.getElementById("hora").innerHTML=a.hora});
             </script>
     </body>
 </html>
