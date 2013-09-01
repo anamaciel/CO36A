@@ -740,7 +740,7 @@ blockquote p {
 }
 
 .tour .text1 {
-    margin-bottom: 13px;
+    margin-bottom: 5px;
 }
 
 .tour {
@@ -751,15 +751,15 @@ blockquote p {
     display: block;
     text-transform: uppercase;
     color: #38afe5;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .price {
-    margin-bottom: 14px;
+    margin-bottom: 5px;
 } 
 
 .price +.price  {
-    margin-bottom: 40px;
+    margin-bottom: 5px;
 }
 
 .tours .clear {

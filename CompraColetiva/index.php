@@ -36,6 +36,7 @@ if (substr_count($atual, '/') > 0) {
         <link rel="stylesheet" href="<?php echo $caminho; ?>css/slider.css">
         <link rel="stylesheet" href="<?php echo $caminho; ?>css/touchTouch.css">
         <script src="<?php echo $caminho; ?>js/jquery.js"></script>
+        <script async defer type="text/javascript" src="http://localhost:8088/socket.io/socket.io.js"></script> 
         <script src="<?php echo $caminho; ?>js/sForm.js"></script>
         <script src="<?php echo $caminho; ?>js/jquery-migrate-1.1.1.js"></script>
         <script src="<?php echo $caminho; ?>js/superfish.js"></script>
@@ -101,11 +102,11 @@ if (substr_count($atual, '/') > 0) {
                         <ul class="sf-menu">
                             <li class="current"><a href="<?php echo $caminho; ?>site/">Home</a></li>
                             <li class="with_ul"><a href="<?php echo $caminho; ?>site/ofertas">Ofertas</a>
-                                <ul>
-                                    <li><a href="#"> Agency</a></li>
-                                    <li><a href="#">News</a></li>
-                                    <li><a href="#">Team</a></li>
-                                </ul>
+                                <!--                                <ul>
+                                                                    <li><a href="#"> Agency</a></li>
+                                                                    <li><a href="#">News</a></li>
+                                                                    <li><a href="#">Team</a></li>
+                                                                </ul>-->
                             </li>
                             <li><a href="<?php echo $caminho; ?>site/ofertas_passadas">Ofertas Passadas</a></li>
                             <li><a href="<?php echo $caminho; ?>site/">Tours</a></li>
@@ -120,7 +121,7 @@ if (substr_count($atual, '/') > 0) {
         </header>
 
         <div class="main">
-            <div class="login" onclick="javascript:location.href='<?php echo $caminho; ?>site/login'">Login</div>
+            <div class="login" onclick="javascript:location.href = '<?php echo $caminho; ?>site/login'">Login</div>
             <!--=======content================================-->
             <?php
             include("{$pasta}/" . anti_injection($pagina) . ".php");
@@ -173,6 +174,20 @@ if (substr_count($atual, '/') > 0) {
             </div>
 
         </footer>
+        <script type="text/javascript">
+            var socket = io.connect('http://localhost:8088', {
+                'connect timeout': 500,
+                'reconnect': true,
+                'reconnection delay': 500,
+                'reopen delay': 500,
+                'max reconnection attempts': 10
+            })
+            socket.emit("userconected", "");
+            socket.on("showmessage", function(a) {
+                document.getElementById("tempoRestante").innerHTML = a.dia + "d " + a.horas;
+            });
+            //socket.on("showmessage",function(a){document.getElementById("hora").innerHTML=a.hora});
+        </script>
 
     </body>
 </html>
