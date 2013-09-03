@@ -11,7 +11,7 @@ require_once("class/pdo.class.php");
 require_once("caminho.php");
 
 $atual = ($_GET['pg'] != '') ? $_GET['pg'] : 'home';
-$permissao = array('index', 'login', 'home', 'termos', 'perguntas', 'cadastro', 'contato', 'ofertas', 'ofertas_passadas');
+$permissao = array('index', 'login', 'home', 'termos', 'perguntas', 'cadastro', 'contato', 'ofertas', 'ofertas_passadas', 'ofertaDetalhe');
 
 if (substr_count($atual, '/') > 0) {
     $atual = explode('/', $atual);
@@ -174,20 +174,7 @@ if (substr_count($atual, '/') > 0) {
             </div>
 
         </footer>
-        <script type="text/javascript">
-            var socket = io.connect('http://localhost:8088', {
-                'connect timeout': 500,
-                'reconnect': true,
-                'reconnection delay': 500,
-                'reopen delay': 500,
-                'max reconnection attempts': 10
-            })
-            socket.emit("userconected", "");
-            socket.on("showmessage", function(a) {
-                document.getElementById("tempoRestante").innerHTML = a.dia + "d " + a.horas;
-            });
-            //socket.on("showmessage",function(a){document.getElementById("hora").innerHTML=a.hora});
-        </script>
+        
 
     </body>
 </html>

@@ -1105,3 +1105,17 @@ footer {
     color: #30455b;
     cursor: pointer;
 }
+
+#tempoRestante{
+    float: right;
+    margin-top: -79px;
+    font-size: 29px;
+    line-height: 44px;
+    color: #263555;
+}
+
+.tempo{
+    float: right;
+    margin-top: -90px;
+    margin-right: 130px;
+}

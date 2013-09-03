@@ -21,6 +21,9 @@ class oferta{
     private $qtd_vendida;
     private $valor_real;
     private $valor_liquido;
+    public $start;
+    public $limit;
+    public $busca;
 
     function set($prop, $value) {
         $this->$prop = $value;
@@ -67,6 +70,13 @@ class oferta{
                 FROM oferta o
                 WHERE id>0 $id $nome $descricao $data_inicio $data_fim $qtd_minima $qtd_vendida $valor_real $valor_liquido
                 ORDER BY o.data_inicio DESC;";
+        
+        if ($this->start != '' && $this->limit != '') {
+            $start = $this->start;
+            $end = $this->limit;
+            $sql = $sql . " LIMIT " . $start . "," . $end;
+        }
+        
         return $sql;
     }
 

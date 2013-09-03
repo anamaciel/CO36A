@@ -34,9 +34,7 @@ $banco = new cPDO();
                                 <p class="text1"><?php echo $row['nome']; ?></p>
                                 <p class="price"><span>De R$<?php echo formata_valor($row['valor_real'],2); ?></span></p>
                                 <p class="price"><span>Por R$<?php echo formata_valor($row['valor_liquido'],2); ?></span></p>
-                                <p class="price">A oferta termina em </p>
-                                <p class="price" id="tempoRestante"></p>
-                                <a href="#" class="btn">Detalhes</a>
+                                <a href="<?php echo $caminho; ?>site/ofertaDetalhe/<?php echo $row['id']; ?>" class="btn">Detalhes</a>
                             </div>
                         </div>
                     </div>

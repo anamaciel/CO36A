@@ -49,14 +49,20 @@ io.sockets.on('connection', function(socket) {
             var dias;
             var horas;
             client.query(
-                    'SELECT DATEDIFF(data_fim, data_inicio) as dias, TIME_FORMAT(TIMEDIFF(data_fim, data_inicio), \'%hh:%mm:%ss\') as hora  FROM oferta WHERE id = 2',
+                    'SELECT DATEDIFF(data_fim, NOW()) as dias, TIME_FORMAT(TIMEDIFF(data_fim, NOW()), \'%hh:%mm:%ss\') as hora  FROM oferta WHERE id = ' + data,
                     function(err, results, fields) {
                         if (err) {
                             throw err;
                         }
                         dias = results[0].dias;
                         horas = results[0].hora;
-                        socket.emit('showmessage',{dia: dias, horas: horas});
+                        //var diaN = dias.indexOf("-");
+                        //var horaN = horas.indexOf("-");
+                        if((dias >=0)){
+                            socket.emit('showmessage',{mensagem: dias + "d " + horas});
+                        }else{
+                            socket.emit('showmessage',{mensagem: "Tempo esgotado"});
+                        }
                     }
             );
 
