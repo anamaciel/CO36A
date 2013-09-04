@@ -40,25 +40,38 @@
                         <strong>Entraremos em contato em breve</strong> </div></div>
                 <fieldset>
                     <label class="name">
-                        <input type="text" value="Nome">
+                        <span>Nome</span>
+                        <input type="text" value="">
                         <br class="clear">
-                        <span class="error error-empty">*Este não é um nome válido.</span><span class="empty error-empty">*Campo Requerido.</span> </label>
+                        <span class="error error-empty">*Este não é um nome válido.</span><span class="empty error-empty">*Campo Requerido.</span> 
+                        <div class="spaceLabel"></div>
+                    </label>
                     <label class="email">
-                        <input type="text" value="Email">
+                        <span>Email</span>
+                        <input type="text" value="">
                         <br class="clear">
-                        <span class="error error-empty">*Este não é um endereço de email válido.</span><span class="empty error-empty">*Campo Requerido.</span> </label>
+                        <span class="error error-empty">*Este não é um endereço de email válido.</span><span class="empty error-empty">*Campo Requerido.</span> 
+                        <div class="spaceLabel"></div>
+                    </label>
                     <label class="name">
-                        <input type="text" value="Assunto">
+                        <span>Assunto</span>
+                        <input type="text" value="">
                         <br class="clear">
-                        <span class="error error-empty">*Este não é um assunto válido.</span><span class="empty error-empty">*Campo Requerido.</span> </label>
+                        <span class="error error-empty">*Este não é um assunto válido.</span><span class="empty error-empty">*Campo Requerido.</span> 
+                        <div class="spaceLabel"></div>
+                    </label>
                     <label class="message">
-                        <textarea>Mensagem</textarea>
+                        <span>Mensagem</span>
+                        <textarea></textarea>
                         <br class="clear">
-                        <span class="error">*A mensagem é muito curta.</span> <span class="empty">*Campo Requerido.</span> </label>
+                        <span class="error">*A mensagem é muito curta.</span> <span class="empty">*Campo Requerido.</span> 
+                    </label>
                     <div class="clear"></div>
                     <div class="btns"><a data-type="reset" class="btn">Limpar</a><div class="none"></div><a data-type="submit" class="btn">Enviar</a>
                         <div class="clear"></div>
-                    </div></fieldset></form>
+                    </div>
+                </fieldset>
+            </form>
         </div>
         <div class="clear"></div>
     </div>

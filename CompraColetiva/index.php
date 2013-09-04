@@ -71,8 +71,6 @@ if (substr_count($atual, '/') > 0) {
                 $().UItoTop({easingType: 'easeOutQuart'});
             });
 
-
-
         </script>
         <!--[if lt IE 8]>
                 <div style=' clear: both; text-align:center; position: relative;'>
@@ -109,7 +107,7 @@ if (substr_count($atual, '/') > 0) {
                                                                 </ul>-->
                             </li>
                             <li><a href="<?php echo $caminho; ?>site/ofertas_passadas">Ofertas Passadas</a></li>
-                            <li><a href="<?php echo $caminho; ?>site/">Tours</a></li>
+                            <li><a href="<?php echo $caminho; ?>site/">Como Funciona</a></li>
                             <li><a href="<?php echo $caminho; ?>site/cadastro">Cadastro</a></li>
                             <li><a href="<?php echo $caminho; ?>site/contato">Contato</a></li>
                         </ul>
@@ -131,25 +129,25 @@ if (substr_count($atual, '/') > 0) {
                 <div class="container_12">
                     <div class="grid_2 prefix_2">
                         <ul>
-                            <li><a href="#">FAQS Page</a></li>
-                            <li><a href="#">People Say</a></li>
+                            <li><a href="#">Ofertas</a></li>
+                            <li><a href="#">Ofertas Passadas</a></li>
                         </ul>
                     </div>
                     <div class="grid_2">
                         <ul>
-                            <li><a href="#">Useful links</a></li>
-                            <li><a href="#">Partners</a></li>
+                            <li><a href="#">Cadastro</a></li>
+                            <li><a href="#">Como Funciona</a></li>
                         </ul>
                     </div>
                     <div class="grid_2">
                         <ul>
-                            <li><a href="#">Insurance</a></li>
-                            <li><a href="#">Family Travel</a></li>
+                            <li><a href="#">Perguntas Frequentes</a></li>
+                            <li><a href="#">Termos de Uso</a></li>
                         </ul>
                     </div>
                     <div class="grid_2">
-                        <h4>Contact Us:</h4>
-                        TEL: 1-800-234-5678<br><a href="#">info@demolink.org</a>
+                        <h4>Contato:</h4>
+                        TEL: +55 44 3523-4156<br><a href="#">contato@nome_site.com.br</a>
 
                     </div>
                     <div class="clear"></div>
@@ -168,13 +166,11 @@ if (substr_count($atual, '/') > 0) {
                         <a href="#"></a>
                     </div>
                     <div class="copy">
-                        Journey &copy; 2013 | <a href="#">Privacy Policy</a> | Website designed by <a href="http://www.templatemonster.com/" rel="nofollow">TemplateMonster.com</a>
-                    </div></div>
+                        Journey &copy; 2013 | <a href="#">Política de Privacidade</a>
+                    </div>
+                </div>
                 <div class="clear"></div>
             </div>
-
         </footer>
-        
-
     </body>
 </html>

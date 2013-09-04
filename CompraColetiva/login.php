@@ -26,14 +26,18 @@
                 </div>
                 <fieldset>
                     <label class="email">
-                        <input type="text" value="Email">
+                        <span>Email</span>
+                        <input type="text" value="">
                         <br class="clear">
                         <span class="error error-empty">*Este não é um endereço de email válido.</span><span class="empty error-empty">*Campo Requerido.</span> 
+                        <div class="spaceLabel"></div>
                     </label>
                     <label class="name">
-                        <input type="text" value="Senha">
+                        <span>Senha</span>
+                        <input type="text" value="">
                         <br class="clear">
                         <span class="error error-empty">*Senha inválida.</span><span class="empty error-empty">*Campo Requerido.</span> 
+                        <div class="spaceLabel"></div>
                     </label>
                     <div class="clear"></div>
                     <ul class="list2 l1">
