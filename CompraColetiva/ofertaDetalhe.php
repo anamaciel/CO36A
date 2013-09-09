@@ -19,11 +19,14 @@ $row_oferta = $banco->query($sql)->fetch();
     <div class="container_12">
         <div class="grid_9">
             <div class="">
-                <h3><?php echo $row_oferta['nome']; ?></h3>
-                <div class="tempo">Tempo restante</div>
-                <div id="tempoRestante"></div>
-                <img src="<?php echo $caminho; ?>images/page2_img1.jpg" alt="" class="img_inner fleft">
-                <p class="text1"><?php echo $row_oferta['descricao']; ?></p>
+                <form id="formCompra">
+                    <h3><?php echo $row_oferta['nome']; ?></h3>
+                    <div class="tempo">Tempo restante</div>
+                    <div id="tempoRestante"></div>
+                    <img src="<?php echo $caminho; ?>images/page2_img1.jpg" alt="" class="img_inner fleft">
+                    <p class="text1"><?php echo $row_oferta['descricao']; ?></p>
+                    <input type="button" id="concluirCompra2" onclick="concluirCompra()" class="btFinaliza" value="Finalizar Compra" title="Concluir Compra"/>
+                </form>
                 <div class="clear"></div>
             </div>
         </div>
@@ -58,17 +61,25 @@ $row_oferta = $banco->query($sql)->fetch();
 
     </div>
 </div>
+
 <script type="text/javascript">
-    var socket = io.connect('http://localhost:8088', {
-        'connect timeout': 500,
-        'reconnect': true,
-        'reconnection delay': 500,
-        'reopen delay': 500,
-        'max reconnection attempts': 10
-    })
-    socket.emit("userconected", "<?php echo $id; ?>");
-    socket.on("showmessage", function(a) {
-        document.getElementById("tempoRestante").innerHTML = a.mensagem;
-    });
-    //socket.on("showmessage",function(a){document.getElementById("hora").innerHTML=a.hora});
+                        var socket = io.connect('http://localhost:8088', {
+                            'connect timeout': 500,
+                            'reconnect': true,
+                            'reconnection delay': 500,
+                            'reopen delay': 500,
+                            'max reconnection attempts': 10
+                        })
+                        socket.emit("userconected", "<?php echo $id; ?>");
+                        socket.on("showmessage", function(a) {
+                            document.getElementById("tempoRestante").innerHTML = a.mensagem;
+                        });
+                        //socket.on("showmessage",function(a){document.getElementById("hora").innerHTML=a.hora});
+
+                        function concluirCompra() {
+                            $("#formCompra").attr("action", "<?php echo $caminho; ?>site/compra/");
+                            $("#formCompra").submit();
+                        }
+
+
 </script>
