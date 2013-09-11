@@ -47,6 +47,7 @@ if (substr_count($atual, '/') > 0) {
         <script src="<?php echo $caminho; ?>js/jquery-ui-1.10.3.custom.min.js"></script>
         <script src="<?php echo $caminho; ?>js/jquery.ui.totop.js"></script>
         <script src="<?php echo $caminho; ?>js/touchTouch.jquery.js"></script>
+        <script src="<?php echo $caminho; ?>js/jquery.maskedinput-1.1.4.js"></script>
 
         <script>
             $(window).load(function() {
