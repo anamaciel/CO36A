@@ -4,8 +4,10 @@ require_once('class/cidade.class.php');
 
 $estado = $_POST['uf'];
 
+echo $estado;
+
 $cidade = new cidade();
-$cidade->set(id_estado, $estado);
+$cidade->set(estado, $estado);
 $sql = $cidade->ListaCidadeUf();
 
 $banco = new database();
@@ -16,7 +18,7 @@ if($banco->num_rows() == 0){
    
 }else{
    while($ln = $banco->fetch_assoc()){
-      echo '<option value="'.htmlentities($ln['id_cidade']).'">'.htmlentities($ln['desc_cidade']).'</option>';
+      echo '<option value="'.htmlentities($ln['id']).'">'.htmlentities($ln['nome']).'</option>';
    }
 }
 

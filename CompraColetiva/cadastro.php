@@ -1,4 +1,3 @@
-
 <script>
     $(document).ready(function() {
         $("select[name=uf]").change(function() {
@@ -40,7 +39,7 @@
 
             if (nome != '' && sobrenomenome != '' && email != '' && cpf != '' && nascimento != '' && user != '' && userPass != '' && confirmar != '') {
                 $('#form').fadeTo("slow", 0.3);
-                $.post("<?php echo $caminho; ?>cad/", {nome: nome, email: email, cpf: cpf, rg: rg,
+                $.post("<?php echo $caminho; ?>cad/", {nome: nome, email: email, cpf: cpf, rg: rg, sobrenome: sobrenome,
                     nascimento: nascimento, sexo: sexo, fone: fone, confirmar: confirmar, userPass: userPass, user: user},
                 function(retorno) {
                     $('#respostaCadastro').html(retorno).fadeIn();
@@ -62,7 +61,7 @@
 
 <div class="content">
     <div class="container_12">
-        <form  class="form" id="form">
+        <form id="form">
             <div class="grid_4">
                 <h3>DADOS PESSOAIS</h3>
                 <div class="success_wrapper">
@@ -160,20 +159,15 @@
                         <span class="error error-empty">*CEP inválido.</span><span class="empty error-empty">*Campo Requerido.</span> 
                         <div class="spaceLabel"></div>
                     </label>
+
+
                     <label class="name" style="width: 345px">
 
-                    </label>
-                    <label class="name" style="width: 345px">
-                        <div class="spaceLabel"></div>
-                        <span>Cidade</span>
-                        <select name="cidade" id="cidade">
-                            <option value="M">-</option>
-                        </select>
-                        <div class="spaceLabel"></div>
+
                     </label>
                 </fieldset>
 
-            </div>
+            </div>            
             <div class="grid_4">
                 <h3>DADOS DE LOGIN</h3>
                 <div class="success_wrapper">
@@ -191,21 +185,22 @@
                     </label>
                     <label class="name">
                         <span>Senha</span>
-                        <input type="text" value="" name="senha" id="senha">
+                        <input type="password" value="" name="senha" id="senha">
                         <br class="clear">
                         <span class="error error-empty">*Senha inválida.</span><span class="empty error-empty">*Campo Requerido.</span> 
                         <div class="spaceLabel"></div>
                     </label>
                     <label class="name">
                         <span>Confirmar Senha</span>
-                        <input type="text" value="" name="confirma" id="confirma">
+                        <input type="password" value="" name="confirma" id="confirma">
                         <br class="clear">
                         <span class="error error-empty">*Senhas não conferem.</span><span class="empty error-empty">*Campo Requerido.</span> 
                         <div class="spaceLabel"></div>
                     </label>
                     <div class="clear"></div>
                     <div class="btns" style="margin: 20px 11px;">
-                        <a href="#" id="bEnviar" class="btn">Criar meu Cadastro</a>
+                        <!--<a href="#" id="bEnviar" class="btn">Criar meu Cadastro</a>-->
+                        
                         <div class="clear"></div>
                     </div>
                 </fieldset>
@@ -214,9 +209,15 @@
         </form>
         <div class="clear"></div>
     </div>
+    <span>Estado</span>
+    <select name="uf" id="uf">
+        <option value="">-</option>
+        <option value="18">PR</option>
+    </select>
+    <span>Cidade</span>
+    <select name="cidade" id="cidade">
+        <option value="M">-</option>
+    </select>
+    
+    <input id="bEnviar" name="bEnviar" type="button" value="Enviar" border="0"/>
 </div>
-<span>Estado</span>
-<select name="uf" id="uf">
-    <option value="">-</option>
-    <option value="PR">PR</option>
-</select>
