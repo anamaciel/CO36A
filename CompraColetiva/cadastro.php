@@ -19,12 +19,12 @@
 
         $('#bEnviar').click(function() {
             var nome = $("#nome").val();
-            var sobrenomenome = $("#sobrenomenome").val();
+            var sobrenome = $("#sobrenome").val();
             var cpf = $("#cpf").val();
             var rg = $("#rg").val();
             var nascimento = $("#nascimento").val();
-            var sexo = $("#sexo").val();
             var fone = $("#fone").val();
+            var sexo = $("#sexo").val();
             var logradouro = $("#logradouro").val();
             var numero = $("#numero").val();
             var complemento = $("#complemento").val();
@@ -32,15 +32,28 @@
             var cep = $("#cep").val();
             var cidade = $("#cidade").val();
             var uf = $("#uf").val();
-            var confirmar = $("#confirmar").val();
             var email = $("#email").val();
-            var userPass = $("#userPass").val();
-            var user = $("#user").val();
+            var senha = $("#senha").val();
+            var confirma = $("#confirma").val();
 
-            if (nome != '' && sobrenomenome != '' && email != '' && cpf != '' && nascimento != '' && user != '' && userPass != '' && confirmar != '') {
+            if (nome != '' && sobrenome != '' && email != '') {
                 $('#form').fadeTo("slow", 0.3);
-                $.post("<?php echo $caminho; ?>cad/", {nome: nome, email: email, cpf: cpf, rg: rg, sobrenome: sobrenome,
-                    nascimento: nascimento, sexo: sexo, fone: fone, confirmar: confirmar, userPass: userPass, user: user},
+                $.post("<?php echo $caminho; ?>cad/", {
+                    nome: nome, 
+                    sobrenome: sobrenome,
+                    cpf: cpf, 
+                    rg: rg, 
+                    nascimento: nascimento, 
+                    fone: fone, 
+                    sexo: sexo,
+                    logradouro:logradouro,
+                    complemento: complemento,
+                    numero:numero,
+                    bairro:bairro,
+                    cep:cep,
+                    email: email,
+                    confirma: confirma, 
+                    senha: senha},
                 function(retorno) {
                     $('#respostaCadastro').html(retorno).fadeIn();
                     $('#form').fadeTo("slow", 2);
