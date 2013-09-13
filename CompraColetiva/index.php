@@ -3,8 +3,11 @@ if (!isset($_SESSION)) {
     session_start();
 }
 $vlM = 0;
-error_reporting(E_ALL);
-ini_set('display_errors', 'off');
+//error_reporting(E_ALL);
+//ini_set('display_errors', 'off');
+
+ini_set('display_errors', 0 );
+error_reporting(0);
 
 require_once("class/funcoes.php");
 require_once("class/pdo.class.php");

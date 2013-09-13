@@ -1,4 +1,7 @@
 <?php
+ini_set('display_errors', 0 );
+error_reporting(0);
+
 require_once("class/funcoes.php");
 require_once("class/mysql.class.php");
 require_once("class/usuario.class.php");
@@ -40,11 +43,11 @@ $sql = $usuario->GravaUsuario();
 $banco->sqlQuery($sql);
 
 $idUsuario = $banco->insert_id();
-echo "USUARIO" . $idUsuario;
+//echo "USUARIO" . $idUsuario;
 if ($idUsuario == 0) {
     echo "Erro ao gravar registro";
 } else {
-    echo $idUsuario;
+    //echo $idUsuario;
     $endereco = new endereco();
     $endereco->set(cidade_id, $cidade);
     $endereco->set(logradouro, $logradouro);
