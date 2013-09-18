@@ -51,7 +51,6 @@
                     numero:numero,
                     bairro:bairro,
                     cep:cep,
-                    cidade:cidade,
                     email: email,
                     confirma: confirma, 
                     senha: senha},

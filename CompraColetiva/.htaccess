@@ -4,7 +4,8 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^site/(.*)$ index.php?pg=$1
 RewriteRule ^city/(.*)$ cidade.php
 RewriteRule ^cad/(.*)$ cadastrar.php
-
+RewriteRule ^logar/(.*)$ logar.php
+RewriteRule ^sair/(.*)$ logout.php
 
 
 RewriteRule ^comentario/(.*)$ securimage/comenta.php
@@ -21,8 +22,7 @@ RewriteRule ^lista_enderecos/(.*)$ endereco_lista.php
 RewriteRule ^senhas/(.*)$ cad_senha.php
 RewriteRule ^cep/(.*)$ internas/cep.php
 RewriteRule ^carrinho_add/(.*)$ carrinho/carrinho.php?id=$1
-RewriteRule ^logar/(.*)$ logar.php
-RewriteRule ^logout/(.*)$ logout.php
+
 RewriteRule ^carrinho_update/(.*)$ carrinho/carrinho.php?id=$1?id=$1
 RewriteRule ^frete/(.*)$ correio/retorno.php
 RewriteRule ^log/(.*)$ login.php?ids=$1

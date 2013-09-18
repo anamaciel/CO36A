@@ -12,7 +12,6 @@ class endereco extends database {
     private $numero;
     private $complemento;
     private $bairro;
-    private $cep;
     private $tp_endereco;
     private $usuario_id;
 
@@ -33,11 +32,11 @@ class endereco extends database {
     
     public function GravaEndereco() {
         if ($this->id_endereco > 0) {
-            $sql = "UPDATE endereco SET cidade_id='$this->cidade_id', logradouro= '$this->logradouro', numero= '$this->numero', complemento= '$this->complemento', bairro= '$this->bairro', cep= '$this->cep', tp_endereco= '$this->tp_endereco' WHERE id_endereco='$this->id_endereco' LIMIT 1";
+            $sql = "UPDATE endereco SET cidade_id='$this->cidade_id', logradouro= '$this->logradouro', numero= '$this->numero', complemento= '$this->complemento', bairro= '$this->bairro', tp_endereco= '$this->tp_endereco' WHERE id_endereco='$this->id_endereco' LIMIT 1";
             return $sql;
         } else {
-            $sql = "INSERT INTO endereco (id, cidade_id, logradouro, numero, complemento,  bairro, cep, tp_endereco, usuario_id)
-            VALUES ('', '$this->cidade_id', '$this->logradouro', '$this->numero', '$this->complemento', '$this->bairro', '$this->cep', '$this->tp_endereco', '$this->usuario_id')";
+            $sql = "INSERT INTO endereco (id_endereco, cidade_id, logradouro, numero, complemento,  bairro, tp_endereco, usuario_id)
+            VALUES ('', '$this->cidade_id', '$this->logradouro', '$this->numero', '$this->complemento', '$this->bairro', '$this->tp_endereco', '$this->usuario_id')";
         }
         return $sql;
     }

@@ -8,9 +8,7 @@ class usuario extends database {
     public $sobrenome;
     public $sexo;
     public $nascimento;
-    public $cpf;
-    public $rg;
-    public $email;
+    public $login;
     public $senha;
     public $tipo;
 
@@ -47,8 +45,8 @@ class usuario extends database {
             if ($this->nascimento != '') {
                 $nascimento = ", nascimento='$this->nascimento' ";
             }
-            if ($this->email != '') {
-                $email = ", email='$this->email' ";
+            if ($this->login != '') {
+                $login = ", login='$this->login' ";
             }
             if ($this->senha != '') {
                 $senha = ", senha='$this->senha' ";
@@ -57,11 +55,11 @@ class usuario extends database {
                 $tipo = ", tipo='$this->tipo' ";
             }
 
-            $sql = "UPDATE usuario SET $nome $sobrenome $sexo $nascimento $email $senha $tipo WHERE id='$this->id' LIMIT 1";
+            $sql = "UPDATE usuario SET $nome $sobrenome $sexo $nascimento $login $senha $tipo WHERE id='$this->id' LIMIT 1";
             return $sql;
         } else {
-            $sql = "INSERT INTO usuario (id, nome, sobrenome, sexo, nascimento, cpf, rg, email, senha, tipo)
-            VALUES ('', '$this->nome', '$this->sobrenome', '$this->sexo', '$this->nascimento', '$this->cpf', '$this->rg', '$this->email', '$this->senha', '$this->tipo')";
+            $sql = "INSERT INTO usuario (id, nome, sobrenome, sexo, nascimento, login, senha, tipo)
+            VALUES ('', '$this->nome', '$this->sobrenome', '$this->sexo', '$this->nascimento', '$this->login', '$this->senha', '$this->tipo')";
         }
         return $sql;
     }

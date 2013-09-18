@@ -3,18 +3,15 @@ if (!isset($_SESSION)) {
     session_start();
 }
 $vlM = 0;
-//error_reporting(E_ALL);
-//ini_set('display_errors', 'off');
-
-ini_set('display_errors', 0 );
-error_reporting(0);
+error_reporting(E_ALL);
+ini_set('display_errors', 'off');
 
 require_once("class/funcoes.php");
 require_once("class/pdo.class.php");
 require_once("caminho.php");
 
 $atual = ($_GET['pg'] != '') ? $_GET['pg'] : 'home';
-$permissao = array('index', 'login', 'home', 'termos', 'perguntas', 'cadastro', 'contato', 'ofertas', 'ofertas_passadas', 'ofertaDetalhe','compra');
+$permissao = array('index', 'login', 'home', 'termos', 'perguntas', 'cadastro', 'contato', 'ofertas', 'ofertas_passadas', 'ofertaDetalhe','compra', 'conta');
 
 if (substr_count($atual, '/') > 0) {
     $atual = explode('/', $atual);
@@ -123,8 +120,15 @@ if (substr_count($atual, '/') > 0) {
         </header>
 
         <div class="main">
-            <div class="login" onclick="javascript:location.href = '<?php echo $caminho; ?>site/login'">Login</div>
-            <!--=======content================================-->
+            <?php
+            if ($_SESSION['id'] != '') {
+                echo '<div class="login"><a href = '."'". $caminho . 'site/conta'."'". '">Minha Conta</a> | <a href = '."'". $caminho . 'sair/'."'". '">Sair</a></div>';
+            } else {
+                echo '<div class="login" onclick="javascript:location.href = '."'". $caminho . 'site/login'."'". '">Login</div>';
+            }
+            ?>
+            
+            <!--=======conteudo================================-->
             <?php
             include("{$pasta}/" . anti_injection($pagina) . ".php");
             ?>

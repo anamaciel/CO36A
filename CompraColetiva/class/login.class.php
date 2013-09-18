@@ -11,7 +11,7 @@ class login extends database {
     }
 
     public function Logar() {
-        $sql = "SELECT u.* FROM usuario u WHERE u.email='$this->$email' AND u.senha='$this->senha' ORDER BY c.nome ASC";
+        $sql = "SELECT u.* FROM usuario u WHERE u.email='$this->email' AND u.senha='$this->senha' ORDER BY u.nome ASC";
         return $sql;
     }
 

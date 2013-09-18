@@ -53,7 +53,7 @@
         <div class="grid_1 space"></div>
         <div class="grid_5">
             <h3>JÁ SOU CADASTRADO</h3>
-            <div class="text3">Se você já é cadastrado, por favor faça o login.</div><br>
+            <div class="text3">Logar no sistema.</div><br>
             <form id="form">
                 <div class="success_wrapper">
                     <div class="success">Contato enviado com sucesso<br>

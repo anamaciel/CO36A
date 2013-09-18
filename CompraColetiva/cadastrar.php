@@ -1,12 +1,12 @@
 <?php
-ini_set('display_errors', 0 );
-error_reporting(0);
-
 require_once("class/funcoes.php");
 require_once("class/mysql.class.php");
 require_once("class/usuario.class.php");
 require_once("class/endereco.class.php");
 require_once("class/pdo.class.php");
+
+error_reporting(E_ALL);
+ini_set('display_errors', 'off');
 
 $nome = htmlspecialchars(strip_tags($_POST['nome']));
 $sobrenome = htmlspecialchars(strip_tags($_POST['sobrenome']));
@@ -36,18 +36,18 @@ $usuario->set(sobrenome, $sobrenome);
 $usuario->set(sexo, $sexo);
 $usuario->set(nascimento, $nascimento);
 $usuario->set(login, $login);
-$usuario->set(senha, $senha);
+$usuario->set(senha, encode5t($senha));
 $usuario->set(tipo, $tipo);
 
 $sql = $usuario->GravaUsuario();
 $banco->sqlQuery($sql);
 
 $idUsuario = $banco->insert_id();
-//echo "USUARIO" . $idUsuario;
+echo "USUARIO" . $idUsuario;
 if ($idUsuario == 0) {
     echo "Erro ao gravar registro";
 } else {
-    //echo $idUsuario;
+    echo $idUsuario;
     $endereco = new endereco();
     $endereco->set(cidade_id, $cidade);
     $endereco->set(logradouro, $logradouro);

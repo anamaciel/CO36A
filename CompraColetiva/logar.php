@@ -10,9 +10,12 @@ $senha = htmlspecialchars(strip_tags($_POST['senha']));
 
 if ($email != '' && $senha != '') {
 
+    error_reporting(E_ALL);
+    ini_set('display_errors', 'off');
+
     $login = new login();
-    $login->set(login, anti_injection($email));
-    $login->set(senha, anti_injection($senha));
+    $login->set(email, anti_injection($email));
+    $login->set(senha, anti_injection(encode5t($senha)));
 
     $sql = $login->Logar();
 
@@ -20,17 +23,21 @@ if ($email != '' && $senha != '') {
     $banco->connect();
     $banco->sqlQuery($sql);
 
-    if ($usuario != '0') {
+    if ($banco->num_rows() == 0) {
+        echo "Usu&aacute;rio ou senha incorretos";
+    } else {
+
         if (!isset($_SESSION)) {
             session_start();
         }
-        $usuario = explode('|', $usuario);
-        $_SESSION['nome'] = $usuario['0'];
-        $_SESSION['id'] = $usuario['1'];
+
+        $usuario = $banco->fetch_assoc();
+
+        $_SESSION['id'] = $usuario['id'];
+        $_SESSION['nome'] = $usuario['nome'];
+        $_SESSION['email'] = $usuario['email'];
 
         echo "<script>open('" . $caminho . "site/','_parent')</script>";
-    } else {
-        echo "Usu&aacute;rio ou senha incorretos";
     }
 } else {
     echo "Preenha os campos obrigatorios";
