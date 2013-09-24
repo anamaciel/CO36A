@@ -34,12 +34,13 @@ $usuario = new usuario();
 $usuario->set(nome, $nome);
 $usuario->set(sobrenome, $sobrenome);
 $usuario->set(sexo, $sexo);
-$usuario->set(nascimento, $nascimento);
-$usuario->set(login, $login);
+$usuario->set(nascimento, converte_data($nascimento));
+$usuario->set(email, $email);
 $usuario->set(senha, encode5t($senha));
 $usuario->set(tipo, $tipo);
 
 $sql = $usuario->GravaUsuario();
+echo $sql;
 $banco->sqlQuery($sql);
 
 $idUsuario = $banco->insert_id();

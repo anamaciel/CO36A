@@ -6,6 +6,7 @@ RewriteRule ^city/(.*)$ cidade.php
 RewriteRule ^cad/(.*)$ cadastrar.php
 RewriteRule ^logar/(.*)$ logar.php
 RewriteRule ^sair/(.*)$ logout.php
+RewriteRule ^comp/(.*)$ compra.php
 
 
 RewriteRule ^comentario/(.*)$ securimage/comenta.php
