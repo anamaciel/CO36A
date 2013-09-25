@@ -17,6 +17,26 @@
             $("#cpf").mask("999.999.999-99");
         });
 
+        $('#reset').click(function() {
+            $("#nome").val('');
+            $("#sobrenome").val('');
+            $("#cpf").val('');
+            $("#rg").val('');
+            $("#nascimento").val('');
+            $("#fone").val('');
+            $("#sexo").val('');
+            $("#logradouro").val('');
+            $("#numero").val('');
+            $("#complemento").val('');
+            $("#bairro").val('');
+            $("#cep").val('');
+            $("#cidade").val('');
+            $("#uf").val('');
+            $("#email").val('');
+            $("#senha").val('');
+            $("#confirma").val('');
+        });
+
         $('#bEnviar').click(function() {
             var nome = $("#nome").val();
             var sobrenome = $("#sobrenome").val();
@@ -39,20 +59,20 @@
             if (nome != '' && sobrenome != '' && email != '') {
                 $('#form').fadeTo("slow", 0.3);
                 $.post("<?php echo $caminho; ?>cad/", {
-                    nome: nome, 
+                    nome: nome,
                     sobrenome: sobrenome,
-                    cpf: cpf, 
-                    rg: rg, 
-                    nascimento: nascimento, 
-                    fone: fone, 
+                    cpf: cpf,
+                    rg: rg,
+                    nascimento: nascimento,
+                    fone: fone,
                     sexo: sexo,
-                    logradouro:logradouro,
+                    logradouro: logradouro,
                     complemento: complemento,
-                    numero:numero,
-                    bairro:bairro,
-                    cep:cep,
+                    numero: numero,
+                    bairro: bairro,
+                    cep: cep,
                     email: email,
-                    confirma: confirma, 
+                    confirma: confirma,
                     senha: senha},
                 function(retorno) {
                     $('#respostaCadastro').html(retorno).fadeIn();
@@ -125,9 +145,9 @@
                         <span class="error error-empty">*Telefone inválido.</span> 
                         <div class="spaceLabel"></div>
                     </label>
-                    <label class="name" style="width: 345px">
+                    <label class="name">
                         <span>Sexo</span>
-                        <select name="sexo" id="sexo">
+                        <select name="sexo" id="sexo" class="select">
                             <option value="M">Masculino</option>
                             <option value="F">Feminino</option>
                         </select>
@@ -173,7 +193,23 @@
                         <div class="spaceLabel"></div>
                     </label>
 
-
+                    <label class="name">
+                        <span>Estado</span>
+                        <select name="uf" id="uf" class="select">
+                            <option value="">-</option>
+                            <option value="18">PR</option>
+                        </select>
+                        <br class="clear">
+                        <div class="spaceLabel"></div>
+                    </label>
+                    <label class="name">
+                        <span>Cidade</span>
+                        <select name="cidade" id="cidade"  class="select">
+                            <option value="M">-</option>
+                        </select>
+                        <br class="clear">
+                        <div class="spaceLabel"></div>
+                    </label>
                     <label class="name" style="width: 345px">
 
 
@@ -211,26 +247,17 @@
                         <div class="spaceLabel"></div>
                     </label>
                     <div class="clear"></div>
-                    <div class="btns" style="margin: 20px 11px;">
-                        <!--<a href="#" id="bEnviar" class="btn">Criar meu Cadastro</a>-->
-                        
+                    <div class="btns">
+                        <a data-type="reset" id="reset" class="btn">Limpar</a>
+                        <div class="none"></div>
+                        <a class="btn" id="bEnviar" name="bEnviar">Enviar</a>
                         <div class="clear"></div>
                     </div>
                 </fieldset>
+                <div class="clear"></div>
+                <div id="respostaCadastro"></div>
             </div>
-            <div id="respostaCadastro"></div>
         </form>
         <div class="clear"></div>
     </div>
-    <span>Estado</span>
-    <select name="uf" id="uf">
-        <option value="">-</option>
-        <option value="18">PR</option>
-    </select>
-    <span>Cidade</span>
-    <select name="cidade" id="cidade">
-        <option value="M">-</option>
-    </select>
-    
-    <input id="bEnviar" name="bEnviar" type="button" value="Enviar" border="0"/>
 </div>

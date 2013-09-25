@@ -25,6 +25,8 @@ $email = htmlspecialchars(strip_tags($_POST['email']));
 $senha = htmlspecialchars(strip_tags($_POST['senha']));
 $confirma = htmlspecialchars(strip_tags($_POST['confirma']));
 
+$tipo = 2;
+
 $banco = new database();
 $banco->connect();
 
@@ -40,15 +42,15 @@ $usuario->set(senha, encode5t($senha));
 $usuario->set(tipo, $tipo);
 
 $sql = $usuario->GravaUsuario();
-echo $sql;
+//echo $sql;
 $banco->sqlQuery($sql);
 
 $idUsuario = $banco->insert_id();
-echo "USUARIO" . $idUsuario;
+//echo "USUARIO" . $idUsuario;
 if ($idUsuario == 0) {
     echo "Erro ao gravar registro";
 } else {
-    echo $idUsuario;
+    //echo $idUsuario;
     $endereco = new endereco();
     $endereco->set(cidade_id, $cidade);
     $endereco->set(logradouro, $logradouro);
@@ -59,7 +61,7 @@ if ($idUsuario == 0) {
     $endereco->set(usuario_id, $idUsuario);
     
     $sql = $endereco->GravaEndereco();
-    echo $sql;
+    echo "Cadastro realizado com sucesso"; //$sql;
     $banco->sqlQuery($sql);
 }
 ?>

@@ -1147,3 +1147,24 @@ footer {
     cursor: pointer;
     color: #38AFE5;
 }
+
+.select {
+    color: #263555;
+    border: 1px solid #d4d0d0;
+    padding: 4px 10px 6px;
+    width: 100%;
+    background-color: #fcfafa;
+    text-transform: uppercase;
+    height: 28px;
+    float: left;
+    font: 13px/18px Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;    
+}
+
+#respostaCadastro {
+    color: #263555;
+    font-size: 14px;
+    margin-top: 20px;
+}
