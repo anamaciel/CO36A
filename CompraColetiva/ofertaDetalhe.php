@@ -61,10 +61,14 @@ $row_pessoa = $banco->query($sql)->fetch();
                     <input type="hidden" value='<?php echo $row_oferta['id']; ?>'>
                     <?php
                     //if($row_oferta['qtd_minima']){
-                            ?>
+                    $sql = "INSERT INTO venda VALUES ('0','" . $row_oferta['id'] . "','" . $id_usuario . "',NOW(),'PENDENTE')";
+                    $sqlOferta = "UPDATE oferta SET qtd_vendida='" . ($row_oferta['qtd_vendida'] + 1) . "' where id='" . $row_oferta['id'] . "'";
+                    $banco->query($sql);
+                    $banco->query($sqlOferta);
+                    ?>
                     <input type="image" src=https://www.bcash.com.br/webroot/img/bt_comprar.gif value="Comprar" alt="Comprar" border="0" align="absbottom" >
                     <?php
-                     //   }
+                    //   }
                     ?>
                 </form>
                 <div class="clear"></div>

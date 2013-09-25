@@ -29,6 +29,14 @@ if ($_SESSION['id'] == '') {
 
     echo "<script language=\"javascript\">location.href=\"" . $caminho . "site/login\"</script>";
 } else {
+    if (!isset($_SESSION)) {
+        session_start();
+    }
+    require_once("class/funcoes.php");
+require_once("class/pdo.class.php");
+$banco = new cPDO();
+    
+    $id_usuario = $_SESSION['id'];
     ?>
 
     <div class="content">
@@ -123,9 +131,15 @@ if ($_SESSION['id'] == '') {
             <h3>MINHAS OFERTAS</h3>
             <fieldset>
                 <ul>
-                    <li class="link-li" onclick="location.href = '<?php echo $caminho; ?>site/minha_oferta_detalhe/01'">Minha Oferta 01</li>
-                    <li class="link-li" onclick="location.href = '<?php echo $caminho; ?>site/minha_oferta_detalhe/02'">Minha Oferta 02</li>
-                    <li class="link-li" onclick="location.href = '<?php echo $caminho; ?>site/minha_oferta_detalhe/03'">Minha Oferta 03</li>
+                    <?php
+                    $sql = "SELECT o.* FROM oferta o WHERE status='1' AND o.usuario_id = " . $id_usuario;
+                    //echo $sql;
+                    foreach ($banco->query($sql) as $row) {
+                        ?>
+                        <li class="link-li" onclick="location.href = '<?php echo $caminho; ?>site/ofertaDetalhe/<?php echo $row['id']; ?>'"><?php echo $row['nome']; ?></li>
+                        <?php
+                    }
+                    ?>
                 </ul>
             </fieldset>
         </div>

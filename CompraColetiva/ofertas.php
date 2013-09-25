@@ -31,7 +31,8 @@ $banco = new cPDO();
                     $sqlVerifica = $verificaOferta->verificaStatusOferta();
                     //echo $sqlVerifica;
                     $row_oferta = $banco->query($sqlVerifica)->fetch();
-                    if ($row_oferta['dias'] > 0 && $row_oferta['status'] == 1) {
+                    //echo $row['status'] . 'teste';
+                    if ($row_oferta['dias'] > 0 && $row['status'] == '1') {
                         ?>
                         <div class="grid_4 alpha">
                             <div class="tour">
@@ -50,7 +51,7 @@ $banco = new cPDO();
                 ?>
             </div>
         </div>
-        <div class="grid_3">
+<!--        <div class="grid_3">
             <h3>Browse Tours</h3>
             <form method="post" id="form1" class="form1">
                 <label class="mb0">
@@ -96,7 +97,7 @@ $banco = new cPDO();
                 <div class="clear"></div>
                 <a onClick="document.getElementById('form2').submit()" href="#" class="btn"> Search</a>
             </form> 
-        </div>
+        </div>-->
         <div class="clear"></div>
     </div>
 </div>

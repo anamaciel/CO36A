@@ -87,6 +87,12 @@ class oferta{
         
         return $sql;
     }
+    
+    public function gravaVenda(){
+        $sql = ""; 
+        
+        return $sql;
+    }
 
     public function GravaOferta() {
         if ($this->id > 0) {
