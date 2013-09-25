@@ -3,7 +3,7 @@
 class login extends database {
 
     public $id;
-    public $email;
+    public $login;
     public $senha;
 
     public function set($prop, $value) {
@@ -11,7 +11,7 @@ class login extends database {
     }
 
     public function Logar() {
-        $sql = "SELECT u.* FROM usuario u WHERE u.email='$this->email' AND u.senha='$this->senha' ORDER BY u.nome ASC";
+        $sql = "SELECT u.* FROM usuario u WHERE u.login='$this->login' AND u.senha='$this->senha' ORDER BY u.nome ASC";
         return $sql;
     }
 

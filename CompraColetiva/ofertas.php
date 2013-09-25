@@ -23,22 +23,29 @@ $banco = new cPDO();
             <div class="tours">
                 <?php
                 $oferta = new oferta();
+                $verificaOferta = new oferta();
                 $sql = $oferta->ListaOferta();
                 //echo $sql;
                 foreach ($banco->query($sql) as $row) {
-                    ?>
-                    <div class="grid_4 alpha">
-                        <div class="tour">
-                            <img src="<?php echo $caminho; ?>images/page4_img1.jpg" alt="" class="img_inner fleft">
-                            <div class="extra_wrapper">
-                                <p class="text1"><?php echo $row['nome']; ?></p>
-                                <p class="price"><span>De R$<?php echo formata_valor($row['valor_real'],2); ?></span></p>
-                                <p class="price"><span>Por R$<?php echo formata_valor($row['valor_liquido'],2); ?></span></p>
-                                <a href="<?php echo $caminho; ?>site/ofertaDetalhe/<?php echo $row['id']; ?>" class="btn">Detalhes</a>
+                    $verificaOferta->set('id', $row['id']);
+                    $sqlVerifica = $verificaOferta->verificaStatusOferta();
+                    //echo $sqlVerifica;
+                    $row_oferta = $banco->query($sqlVerifica)->fetch();
+                    if ($row_oferta['dias'] > 0 && $row_oferta['status'] == 1) {
+                        ?>
+                        <div class="grid_4 alpha">
+                            <div class="tour">
+                                <img src="<?php echo $caminho; ?>images/page4_img1.jpg" alt="" class="img_inner fleft">
+                                <div class="extra_wrapper">
+                                    <p class="text1"><?php echo $row['nome']; ?></p>
+                                    <p class="price"><span>De R$<?php echo formata_valor($row['valor_real'], 2); ?></span></p>
+                                    <p class="price"><span>Por R$<?php echo formata_valor($row['valor_liquido'], 2); ?></span></p>
+                                    <a href="<?php echo $caminho; ?>site/ofertaDetalhe/<?php echo $row['id']; ?>" class="btn">Detalhes</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <?php
+                        <?php
+                    }
                 }
                 ?>
             </div>

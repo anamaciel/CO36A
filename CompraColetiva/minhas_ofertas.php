@@ -1,3 +1,29 @@
+<script>
+    $(document).ready(function() {
+        $('#bEnviar').click(function() {
+            var nome = $("#oferta").val();
+            var descricao = $("#descricao").val();
+            var data_inicio = $("#data_inicio").val();
+            var data_fim = $("#data_fim").val();
+            var qtd_minima = $("#qtd_minima").val();
+            var valor_real = $("#valor_real").val();
+            var valor_liquido = $("#valor_liquido").val();
+            $('#form').fadeTo("slow", 0.3);
+            $.post("<?php echo $caminho; ?>cadOferta/", {
+                nome: nome,
+                descricao: descricao,
+                data_inicio: data_inicio,
+                data_fim: data_fim,
+                qtd_minima: qtd_minima,
+                valor_real: valor_real,
+                valor_liquido: valor_liquido, },
+                    function(retorno) {
+                        $('#respostaCadastro').html(retorno).fadeIn();
+                        $('#form').fadeTo("slow", 2);
+                    });
+        });
+    });
+</script>
 <?php
 if ($_SESSION['id'] == '') {
 
@@ -7,8 +33,8 @@ if ($_SESSION['id'] == '') {
 
     <div class="content">
         <div class="container_12">
-            <div class="grid_12">
-                <form id="form">
+            <form id="form">
+                <div class="grid_12">
                     <h3>CADASTRAR OFERTA</h3>
                     <fieldset>
                         <label class="name">
@@ -24,37 +50,86 @@ if ($_SESSION['id'] == '') {
                             <div class="spaceLabel"></div>
                         </label>
                     </fieldset>
-
-                    <div class="clear"></div>
-
-                    <div id="respostaCadastro"></div>
-
-                    <div class="clear"></div>
-
-                    <div class="btns">
-                        <a data-type="reset" id="reset" class="btn">Limpar</a>
-                        <div class="none"></div>
-                        <a class="btn" id="bEnviar" name="bEnviar">Enviar</a>
-                        <div class="clear"></div>
-                    </div>
-
-                </form>
-            </div>
-            <div class="clear"></div>
-            <form id="form">
-                <div class="grid_12">
-                    <h3>MINHAS OFERTAS</h3>
+                </div>
+                <div class="grid_3">
                     <fieldset>
-                        <ul>
-                            <li class="link-li" onclick="location.href='<?php echo $caminho; ?>site/minha_oferta_detalhe/01'">Minha Oferta 01</li>
-                            <li class="link-li" onclick="location.href='<?php echo $caminho; ?>site/minha_oferta_detalhe/02'">Minha Oferta 02</li>
-                            <li class="link-li" onclick="location.href='<?php echo $caminho; ?>site/minha_oferta_detalhe/03'">Minha Oferta 03</li>
-                        </ul>
+                        <label class="name">
+                            <span>Data Início</span>
+                            <input type="text" value="" name="data_inicio" id="data_inicio">
+                            <br class="clear">
+                            <div class="spaceLabel"></div>
+                        </label>
                     </fieldset>
                 </div>
+                <div class="grid_3">
+                    <fieldset>
+                        <label class="name">
+                            <span>Data Fim</span>
+                            <input type="text" value="" name="data_fim" id="data_fim">
+                            <br class="clear">
+                            <div class="spaceLabel"></div>
+                        </label>
+                    </fieldset>
+                </div>
+                <div class="grid_2">
+                    <fieldset>
+                        <label class="name">
+                            <span>Qtd Mínima</span>
+                            <input type="text" value="" name="qtd_minima" id="qtd_minima">
+                            <br class="clear">
+                            <div class="spaceLabel"></div>
+                        </label>
+                    </fieldset>
+                </div>
+                <div class="grid_2">
+                    <fieldset>
+                        <label class="name">
+                            <span>Valor Real</span>
+                            <input type="text" value="" name="valor_real" id="valor_real">
+                            <br class="clear">
+                            <div class="spaceLabel"></div>
+                        </label>
+                    </fieldset>
+                </div>
+                <div class="grid_2">
+                    <fieldset>
+                        <label class="name">
+                            <span>Valor Liquido</span>
+                            <input type="text" value="" name="valor_liquido" id="valor_liquido">
+                            <br class="clear">
+                            <div class="spaceLabel"></div>
+                        </label>
+                    </fieldset>
+                </div>
+
+                <div class="clear"></div>
+
+                <div id="respostaCadastro"></div>
+
+                <div class="clear"></div>
+
+                <div class="btns">
+                    <a data-type="reset" id="reset" class="btn">Limpar</a>
+                    <div class="none"></div>
+
+                    <div class="clear"></div>
+                </div>
+
             </form>
-            <div class="clear"></div>
         </div>
+        <input id="bEnviar" name="bEnviar" type="button" value="Enviar" border="0"/>
+        <div class="clear"></div>
+        <div class="grid_12">
+            <h3>MINHAS OFERTAS</h3>
+            <fieldset>
+                <ul>
+                    <li class="link-li" onclick="location.href = '<?php echo $caminho; ?>site/minha_oferta_detalhe/01'">Minha Oferta 01</li>
+                    <li class="link-li" onclick="location.href = '<?php echo $caminho; ?>site/minha_oferta_detalhe/02'">Minha Oferta 02</li>
+                    <li class="link-li" onclick="location.href = '<?php echo $caminho; ?>site/minha_oferta_detalhe/03'">Minha Oferta 03</li>
+                </ul>
+            </fieldset>
+        </div>
+        <div class="clear"></div>
     </div>    
     <?php
 }

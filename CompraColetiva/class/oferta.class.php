@@ -21,6 +21,8 @@ class oferta{
     private $qtd_vendida;
     private $valor_real;
     private $valor_liquido;
+    private $usuario_id;
+    private $status;
     public $start;
     public $limit;
     public $busca;
@@ -65,11 +67,17 @@ class oferta{
         if ($this->valor_liquido != '') {
             $valor_liquido = " AND o.valor_liquido = '$this->valor_liquido'";
         }
+        if ($this->usuario_id != '') {
+            $usuario_id = " AND o.usuario_id = '$this->usuario_id'";
+        }
+        if ($this->status != '') {
+            $status = " AND o.status = '$this->status'";
+        }
 
         $sql = "SELECT o.*, DATE_FORMAT(o.data_inicio, '%d/%m/%Y hh:mm:ss') as data_inicioF, DATE_FORMAT(o.data_fim, '%d/%m/%Y hh:mm:ss') as data_fimF
                 FROM oferta o
-                WHERE id>0 $id $nome $descricao $data_inicio $data_fim $qtd_minima $qtd_vendida $valor_real $valor_liquido
-                ORDER BY o.data_inicio DESC;";
+                WHERE id>0 $id $nome $descricao $data_inicio $data_fim $qtd_minima $qtd_vendida $valor_real $valor_liquido $usuario_id $status
+                ORDER BY o.data_inicio DESC;"; 
         
         if ($this->start != '' && $this->limit != '') {
             $start = $this->start;
@@ -106,14 +114,27 @@ class oferta{
             if ($this->valor_liquido != '') {
                 $valor_liquido = " ,valor_liquido = '$this->valor_liquido'";
             }
+            if ($this->usuario_id != '') {
+                $usuario_id = " ,usuario_id = '$this->usuario_id'";
+            }
+            if ($this->status != '') {
+                $status = " ,status = '$this->status'";
+            }
 
-            $sql = "UPDATE oferta SET $nome $descricao $data_inicio $data_fim $qtd_minima $qtd_vendida $valor_real $valor_liquido WHERE id='$this->id' LIMIT 1";
+            $sql = "UPDATE oferta SET $nome $descricao $data_inicio $data_fim $qtd_minima $qtd_vendida $valor_real $valor_liquido $usuario_id WHERE id='$this->id' LIMIT 1";
             return $sql;
         } else {
-            $sql = "INSERT INTO oferta (id, nome, descricao, data_inicio, data_fim, qtd_minima, qtd_vendida, valor_real, valor_liquido)
-            VALUES ('', '$this->nome', '$this->descricao', '$this->data_inicio', '$this->data_fim', '$this->qtd_minima', '$this->qtd_vendida', '$this->valor_real', '$this->valor_liquido')";
+            $sql = "INSERT INTO oferta (id, nome, descricao, data_inicio, data_fim, qtd_minima, qtd_vendida, valor_real, valor_liquido, usuario_id, status)
+            VALUES ('', '$this->nome', '$this->descricao', '$this->data_inicio', '$this->data_fim', '$this->qtd_minima', '$this->qtd_vendida', '$this->valor_real', '$this->valor_liquido', '$this->usuario_id', '0')";
         }
         return $sql;
+    }
+    
+    public function verificaStatusOferta(){
+        if ($this->id > 0) {
+            $sql = "SELECT DATEDIFF(data_fim, NOW()) as dias, TIME_FORMAT(TIMEDIFF(data_fim, NOW()), '%hh:%mm:%ss') as hora  FROM oferta WHERE id = '$this->id'";
+            return $sql;
+        }
     }
 
 }

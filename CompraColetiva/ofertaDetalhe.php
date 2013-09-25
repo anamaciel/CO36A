@@ -25,7 +25,6 @@ $usuario = new usuario();
 $usuario->set(id, $id_usuario);
 $sql = $usuario->ListaUsuario();
 $row_pessoa = $banco->query($sql)->fetch();
-
 ?>
 <div class="content">
     <div class="container_12">
@@ -54,15 +53,19 @@ $row_pessoa = $banco->query($sql)->fetch();
                     <input name="cidade" type="hidden" value="Sao Paulo">
                     <input name="estado" type="hidden" value="SP">
 
-
-                    <h3><?php echo $row_oferta['nome']; ?></h3>
+                    <h3><?php echo utf8_encode($row_oferta['nome']); ?></h3>
                     <div class="tempo">Tempo restante</div>
                     <div id="tempoRestante"></div>
                     <img src="<?php echo $caminho; ?>images/page2_img1.jpg" alt="" class="img_inner fleft">
                     <p class="text1"><?php echo $row_oferta['descricao']; ?></p>
                     <input type="hidden" value='<?php echo $row_oferta['id']; ?>'>
-                    <!--<input type="button" id="concluirCompra2" onclick="concluirCompra()" class="btFinaliza" value="Finalizar Compra" title="Concluir Compra"/>-->
+                    <?php
+                    //if($row_oferta['qtd_minima']){
+                            ?>
                     <input type="image" src=https://www.bcash.com.br/webroot/img/bt_comprar.gif value="Comprar" alt="Comprar" border="0" align="absbottom" >
+                    <?php
+                     //   }
+                    ?>
                 </form>
                 <div class="clear"></div>
             </div>
@@ -72,19 +75,26 @@ $row_pessoa = $banco->query($sql)->fetch();
             <ul class="list1">
                 <?php
                 $ofertas = new oferta();
+                $verificaOferta = new oferta();
                 $ofertas->set('start', 0);
                 $ofertas->set('limit', 3);
                 $sql = $ofertas->ListaOferta();
                 $cont = 1;
                 foreach ($banco->query($sql) as $row) {
-                    ?>
-                    <li>
-                        <div class="count"><?php echo $cont; ?></div>
-                        <div class="extra_wrapper">
-                            <div class="text1"><a href="<?php echo $caminho; ?>site/ofertaDetalhe/<?php echo $row['id']; ?>"><?php echo $row['nome']; ?></a></div><?php echo $row['descricao']; ?>
-                        </div>
-                    </li>
-                    <?php
+                    $verificaOferta->set('id', $row['id']);
+                    $sqlVerifica = $verificaOferta->verificaStatusOferta();
+                    //echo $sqlVerifica;
+                    $row_oferta = $banco->query($sqlVerifica)->fetch();
+                    if ($row_oferta['dias'] > 0 && $row_oferta['status'] == 1) {
+                        ?>
+                        <li>
+                            <div class="count"><?php echo $cont; ?></div>
+                            <div class="extra_wrapper">
+                                <div class="text1"><a href="<?php echo $caminho; ?>site/ofertaDetalhe/<?php echo $row['id']; ?>"><?php echo $row['nome']; ?></a></div><?php echo $row['descricao']; ?>
+                            </div>
+                        </li>
+                        <?php
+                    }
                     $cont++;
                 }
                 ?>

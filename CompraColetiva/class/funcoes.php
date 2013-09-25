@@ -3,7 +3,7 @@ date_default_timezone_set('America/Sao_Paulo');
 
 function calculaFrete($cod_servico, $cep_origem, $cep_destino, $peso, $altura, $largura, $comprimento, $valor_declarado) {
     #OFICINADANET###############################
-    # Código dos Serviços dos Correios
+    # Cï¿½digo dos Serviï¿½os dos Correios
     # 41106 PAC sem contrato
     # 40010 SEDEX sem contrato
     # 40045 SEDEX a Cobrar, sem contrato
@@ -48,7 +48,7 @@ function trataRetornoCep($retorno, $valor) {
             return $msg;
             break;
         case -6:
-            $msg = "Serviço indispon&iacute;vel para o trecho informado";
+            $msg = "Serviï¿½o indispon&iacute;vel para o trecho informado";
             return $msg;
             break;
         default:
@@ -747,6 +747,18 @@ function converte_data($data) {
     }
 }
 
+function converte_dateTime($data) {
+    $data1 = substr($data,0, 10);
+    $time = substr($data,11, 8);
+    //echo $time;
+    //echo $data1;
+    if (valida_data($data1)) {
+        $dataValida = implode(!strstr($data1, '/') ? "/" : "-", array_reverse(explode(!strstr($data1, '/') ? "-" : "/", $data1)));
+    }
+    echo $dataValida. " " . $time;
+    return $dataValida. " " . $time;
+}
+
 function converte_dataPg($data) {
     return substr($date, 0, 4) . "-" . substr($date, 5, 2) . "-" . substr($date, 8, 2) . " " . substr($date, 11, 2) . ":" . substr($date, 14, 2) . ":" . substr($date, 17, 2);
 }
@@ -768,9 +780,9 @@ function validaEmail($email) {
 }
 
 /**
- * @param $to email que receberá a mensagem;
+ * @param $to email que receberï¿½ a mensagem;
  * @param $subject Assunto do email;
- * @param $from Nome de quem está enviando o email;
+ * @param $from Nome de quem estï¿½ enviando o email;
  * @param $emailRementente Remetente precisa ser uma caixa postal do mesmo dominio da hospedagem;
  * @param $message Mensagem a ser enviada;
  * @property Return-Path: Precisa ser uma caixa postal do mesmo dominio da hospedagem;

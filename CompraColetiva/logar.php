@@ -12,9 +12,9 @@ if ($email != '' && $senha != '') {
 
     error_reporting(E_ALL);
     ini_set('display_errors', 'off');
-
+    echo encode5t($senha);
     $login = new login();
-    $login->set(email, anti_injection($email));
+    $login->set(login, anti_injection($email));
     $login->set(senha, anti_injection(encode5t($senha)));
 
     $sql = $login->Logar();
