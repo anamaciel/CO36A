@@ -8,7 +8,6 @@ RewriteRule ^logar/(.*)$ logar.php
 RewriteRule ^sair/(.*)$ logout.php
 RewriteRule ^comp/(.*)$ compra.php
 
-
 RewriteRule ^comentario/(.*)$ securimage/comenta.php
 RewriteRule ^prioridade/(.*)$ securimage/prioridade.php
 RewriteRule ^email/(.*)$ securimage/envia.php

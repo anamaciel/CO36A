@@ -11,7 +11,7 @@ require_once("class/pdo.class.php");
 require_once("caminho.php");
 
 $atual = ($_GET['pg'] != '') ? $_GET['pg'] : 'home';
-$permissao = array('index', 'login', 'home', 'termos', 'perguntas', 'cadastro', 'contato', 'ofertas', 'ofertas_passadas', 'ofertaDetalhe','conta');
+$permissao = array('index', 'login', 'home', 'termos', 'perguntas', 'cadastro', 'contato', 'ofertas', 'ofertas_passadas', 'ofertaDetalhe','conta','minhas_compras','minhas_ofertas','meus_dados','pedido', 'minha_oferta_detalhe','parceiros', 'como_funciona', 'termos');
 
 if (substr_count($atual, '/') > 0) {
     $atual = explode('/', $atual);
@@ -108,7 +108,7 @@ if (substr_count($atual, '/') > 0) {
                                                                 </ul>-->
                             </li>
                             <li><a href="<?php echo $caminho; ?>site/ofertas_passadas">Ofertas Passadas</a></li>
-                            <li><a href="<?php echo $caminho; ?>site/">Como Funciona</a></li>
+                            <li><a href="<?php echo $caminho; ?>site/parceiros">Seja Parceiro</a></li>
                             <li><a href="<?php echo $caminho; ?>site/cadastro">Cadastro</a></li>
                             <li><a href="<?php echo $caminho; ?>site/contato">Contato</a></li>
                         </ul>
@@ -137,24 +137,24 @@ if (substr_count($atual, '/') > 0) {
                 <div class="container_12">
                     <div class="grid_2 prefix_2">
                         <ul>
-                            <li><a href="#">Ofertas</a></li>
-                            <li><a href="#">Ofertas Passadas</a></li>
+                            <li><a href="<?php echo $caminho; ?>site/ofertas">Ofertas</a></li>
+                            <li><a href="<?php echo $caminho; ?>site/ofertas_passadas">Ofertas Passadas</a></li>
                         </ul>
                     </div>
                     <div class="grid_2">
                         <ul>
-                            <li><a href="#">Cadastro</a></li>
-                            <li><a href="#">Como Funciona</a></li>
+                            <li><a href="<?php echo $caminho; ?>site/cadastro">Cadastro</a></li>
+                            <li><a href="<?php echo $caminho; ?>site/como_funciona">Como Funciona</a></li>
                         </ul>
                     </div>
                     <div class="grid_2">
                         <ul>
-                            <li><a href="#">Perguntas Frequentes</a></li>
-                            <li><a href="#">Termos de Uso</a></li>
+                            <li><a href="<?php echo $caminho; ?>site/perguntas">Perguntas Frequentes</a></li>
+                            <li><a href="<?php echo $caminho; ?>site/termos">Termos de Uso</a></li>
                         </ul>
                     </div>
-                    <div class="grid_2">
-                        <h4>Contato:</h4>
+                    <div class="grid_2" >
+                        <h4><a href="<?php echo $caminho; ?>site/contato">Contato:</a></h4>
                         TEL: +55 44 3523-4156<br><a href="#">contato@nome_site.com.br</a>
 
                     </div>

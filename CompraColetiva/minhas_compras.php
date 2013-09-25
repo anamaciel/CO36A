@@ -10,11 +10,11 @@ if ($_SESSION['id'] == '') {
             <form id="form">
                 <div class="grid_12">
                     <fieldset>
-                        <h3>MINHA CONTA</h3>
+                        <h3>MINHAS COMPRAS</h3>
                         <ul>
-                            <li class="link-li" onclick="location.href='<?php echo $caminho; ?>site/meus_dados'">Meus Dados</li>
-                            <li class="link-li" onclick="location.href='<?php echo $caminho; ?>site/minhas_compras'">Minhas Compras</li>
-                            <li class="link-li" onclick="location.href='<?php echo $caminho; ?>site/minhas_ofertas'">Minhas Ofertas</li>
+                            <li class="link-li" onclick="location.href='<?php echo $caminho; ?>site/pedido/01'">Pedido 01</li>
+                            <li class="link-li" onclick="location.href='<?php echo $caminho; ?>site/pedido/02'">Pedido 02</li>
+                            <li class="link-li" onclick="location.href='<?php echo $caminho; ?>site/pedido/03'">Pedido 03</li>
                         </ul>
                     </fieldset>
                 </div>

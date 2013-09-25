@@ -1123,3 +1123,27 @@ footer {
 .spaceLabel {
     margin-top: 10px;
 }
+
+.bt_space {
+    margin-top: 50px;
+    text-align: right;
+}
+
+.pergunta {
+    font-size: 16px;
+    font-weight: bold;
+}
+.resposta {
+    font-size: 14px;
+    border-bottom: 1px #EBE0E0 solid;
+    margin-bottom: 30px;
+}
+.link-li {
+    font-size: 16px;
+    padding: 3px 0px;
+}
+
+.link-li:hover {
+    cursor: pointer;
+    color: #38AFE5;
+}

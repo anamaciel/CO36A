@@ -3,7 +3,7 @@
         <form id="form">
             <div class="grid_12">
                 <fieldset>
-                    <h3>TERMOS DE USO</h3>
+                    <h3>COMO FUNCIONA</h3>
                     
                     <p>TEXTO PARA ILUDIR O CLIENTE</p>
                                         
