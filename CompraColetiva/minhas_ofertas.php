@@ -117,7 +117,8 @@ $banco = new cPDO();
                 <div class="clear"></div>
 
                 <div class="btns">
-                    <a data-type="reset" id="reset" class="btn">Limpar</a>
+                    
+                    <a class="btn" id="bEnviar" name="bEnviar">Enviar</a>
                     <div class="none"></div>
 
                     <div class="clear"></div>
@@ -125,7 +126,6 @@ $banco = new cPDO();
 
             </form>
         </div>
-        <input id="bEnviar" name="bEnviar" type="button" value="Enviar" border="0"/>
         <div class="clear"></div>
         <div class="grid_12">
             <h3>MINHAS OFERTAS</h3>
@@ -137,8 +137,8 @@ $banco = new cPDO();
                     foreach ($banco->query($sql) as $row) {
                         ?>
                         <li class="link-li" onclick="location.href = '<?php echo $caminho; ?>site/ofertaDetalhe/<?php echo $row['id']; ?>'"><?php echo $row['nome']; ?>
-                        <a class="btn" id="bEnviar" name="bEnviar">Enviar</a>
                         </li>
+                        <a class="btn" id="bEnviar" name="bEnviarFoto" onclick="location.href = '<?php echo $caminho; ?>site/uploadFoto/<?php echo $row['id']; ?>'">Enviar Foto</a>
                         <?php
                     }
                     ?>

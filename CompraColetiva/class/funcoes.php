@@ -755,7 +755,7 @@ function converte_dateTime($data) {
     if (valida_data($data1)) {
         $dataValida = implode(!strstr($data1, '/') ? "/" : "-", array_reverse(explode(!strstr($data1, '/') ? "-" : "/", $data1)));
     }
-    echo $dataValida. " " . $time;
+    //echo $dataValida. " " . $time;
     return $dataValida. " " . $time;
 }
 

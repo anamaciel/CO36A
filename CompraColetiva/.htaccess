@@ -5,6 +5,8 @@ RewriteRule ^site/(.*)$ index.php?pg=$1
 RewriteRule ^city/(.*)$ cidade.php
 RewriteRule ^cad/(.*)$ cadastrar.php
 RewriteRule ^edit/(.*)$ editarUsuario.php
+RewriteRule ^cadVenda/(.*)$ cad_venda.php
+RewriteRule ^upload/(.*)$ upload.php
 RewriteRule ^cadOferta/(.*)$ cad_ofertas.php
 RewriteRule ^logar/(.*)$ logar.php
 RewriteRule ^sair/(.*)$ logout.php

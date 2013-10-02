@@ -11,7 +11,7 @@ require_once("class/pdo.class.php");
 require_once("caminho.php");
 
 $atual = ($_GET['pg'] != '') ? $_GET['pg'] : 'home';
-$permissao = array('index', 'login', 'home', 'termos', 'perguntas', 'cadastro', 'contato', 'ofertas', 'ofertas_passadas', 'ofertaDetalhe','conta','minhas_compras','minhas_ofertas','meus_dados','pedido', 'minha_oferta_detalhe','parceiros', 'como_funciona', 'termos', 'editCadastro');
+$permissao = array('index', 'login', 'home', 'termos', 'perguntas', 'cadastro', 'contato', 'ofertas', 'ofertas_passadas', 'ofertaDetalhe','conta','minhas_compras','minhas_ofertas','meus_dados','pedido', 'minha_oferta_detalhe','parceiros', 'como_funciona', 'termos', 'editCadastro', 'uploadFoto');
 
 if (substr_count($atual, '/') > 0) {
     $atual = explode('/', $atual);

@@ -11,7 +11,7 @@ if ($_SESSION['id'] == '') {
                 <div class="grid_12">
                     <fieldset>
                         <h3>SEJA NOSSO PARCEIRO</h3>
-                        <p>Texto para convencer clientes</p>
+                        <p>Faça parte da nossa equipe</p>
                     </fieldset>
                 </div>
             </form>

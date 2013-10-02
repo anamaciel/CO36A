@@ -138,7 +138,7 @@ class oferta{
     
     public function verificaStatusOferta(){
         if ($this->id > 0) {
-            $sql = "SELECT DATEDIFF(data_fim, NOW()) as dias, TIME_FORMAT(TIMEDIFF(data_fim, NOW()), '%hh:%mm:%ss') as hora  FROM oferta WHERE id = '$this->id'";
+            $sql = "SELECT DATEDIFF(data_fim, NOW()) as dias, TIME_FORMAT(TIMEDIFF(data_fim, NOW()), '%hh:%mm:%ss') as hora, status  FROM oferta WHERE id = '$this->id'";
             return $sql;
         }
     }

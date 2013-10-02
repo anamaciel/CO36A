@@ -5,7 +5,7 @@
                 <fieldset>
                     <h3>TERMOS DE USO</h3>
                     
-                    <p>TEXTO PARA ILUDIR O CLIENTE</p>
+                    <p></p>
                                         
                 </fieldset>
             </div>

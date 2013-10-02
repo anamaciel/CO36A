@@ -20,6 +20,12 @@ $oferta->set('id', $id);
 $sql = $oferta->ListaOferta();
 $row_oferta = $banco->query($sql)->fetch();
 $id_usuario = $_SESSION['id'];
+$id_oferta = $row_oferta['id'];
+$qtd_vendida = $row_oferta['qtd_vendida'];
+
+$sqlFoto = "SELECT * FROM recursos WHERE oferta_id = $id_oferta";
+//echo $sqlFoto;
+$row_foto = $banco->query($sqlFoto)->fetch();
 
 $usuario = new usuario();
 $usuario->set(id, $id_usuario);
@@ -56,21 +62,15 @@ $row_pessoa = $banco->query($sql)->fetch();
                     <h3><?php echo utf8_encode($row_oferta['nome']); ?></h3>
                     <div class="tempo">Tempo restante</div>
                     <div id="tempoRestante"></div>
-                    <img src="<?php echo $caminho; ?>images/page2_img1.jpg" alt="" class="img_inner fleft">
-                    <div class="qtd_vendida">Qtd Vendida: <?php echo $row_oferta['qtd_vendida'] ?></div>
+                    <img src="<?php echo $caminho.$row_foto['url']; ?>" alt="" class="img_inner fleft" width="360px" height="281px">
+                    <div class="qtd_vendida"><h3>Qtd Vendida: <?php echo $row_oferta['qtd_vendida'] ?></h3></div>
                     <div></div>
                     <p class="text1"><?php echo $row_oferta['descricao']; ?></p>
                     <input type="hidden" value='<?php echo $row_oferta['id']; ?>'>
                     <?php
-                    //if($row_oferta['qtd_minima']){
-                    $sql = "INSERT INTO venda VALUES ('0','" . $row_oferta['id'] . "','" . $id_usuario . "',NOW(),'PENDENTE')";
-                    $sqlOferta = "UPDATE oferta SET qtd_vendida='" . ($row_oferta['qtd_vendida'] + 1) . "' where id='" . $row_oferta['id'] . "'";
-                    $banco->query($sql);
-                    $banco->query($sqlOferta);
                     ?>
-                    <input type="image" src=https://www.bcash.com.br/webroot/img/bt_comprar.gif value="Comprar" alt="Comprar" border="0" align="absbottom" >
+                        <input type="image" src=https://www.bcash.com.br/webroot/img/bt_comprar.gif onclick="cadVenda();" value="Comprar" alt="Comprar" border="0" align="absbottom" >
                     <?php
-                    //   }
                     ?>
                 </form>
                 <div class="clear"></div>
@@ -115,6 +115,18 @@ $row_pessoa = $banco->query($sql)->fetch();
     </div>
 </div>
 
+<?php
+//function cadVenda() {
+//    if($row_oferta['qtd_minima']){
+//        $sql = "INSERT INTO venda VALUES ('0','" . $row_oferta['id'] . "','" . $id_usuario . "',NOW(),'PENDENTE')";
+//            $sqlOferta = "UPDATE oferta SET qtd_vendida='" . ($row_oferta['qtd_vendida'] + 1) . "' where id='" . $row_oferta['id'] . "'";
+//            $banco->query($sql);
+//            $banco->query($sqlOferta);
+//    }
+//    
+//}
+?>
+
 <script type="text/javascript">
     var socket = io.connect('http://localhost:8088', {
         'connect timeout': 500,
@@ -133,6 +145,19 @@ $row_pessoa = $banco->query($sql)->fetch();
         alert('concluir compra!');
         $("#formCompra").attr("action", "<?php echo $caminho; ?>comp/");
         $("#formCompra").submit();
+    }
+    
+    function cadVenda() {
+        //alert('oi cad venda');
+        var id_oferta = <?php echo $id_oferta; ?>;
+        var id_usuario = <?php echo $id_usuario; ?>;
+        var qtd_vendida = <?php echo $qtd_vendida; ?>;
+        <?php
+            $sql = "INSERT INTO venda VALUES ('0','" . $id_oferta . "','" . $id_usuario . "',NOW(),'PENDENTE')";
+            $sqlOferta = "UPDATE oferta SET qtd_vendida='" . ($qtd_vendida + 1) . "' where id='" . $id_oferta . "'";
+            $banco->query($sql);
+            $banco->query($sqlOferta);
+        ?>
     }
 
 

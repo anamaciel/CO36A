@@ -5,11 +5,11 @@
                 <fieldset>
                     <h3>PERGUNTAS FREQUENTES</h3>
                     
-                    <p class="pergunta">PERGUNTA 01</p>
-                    <p class="resposta">RESPOSTA DA PERGUNTA 01</p>
+                    <p class="pergunta">Como usar?</p>
+                    <p class="resposta">...</p>
                     
-                    <p class="pergunta">PERGUNTA 02</p>
-                    <p class="resposta">RESPOSTA DA PERGUNTA 02</p>
+                    <p class="pergunta">Como comprar?</p>
+                    <p class="resposta">...</p>
                     
                 </fieldset>
             </div>

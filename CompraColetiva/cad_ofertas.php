@@ -10,8 +10,8 @@ require_once("class/endereco.class.php");
 require_once("class/oferta.class.php");
 require_once("class/pdo.class.php");
 
-error_reporting(E_ALL);
-ini_set('display_errors', 'on');
+//error_reporting(E_ALL);
+//ini_set('display_errors', 'on');
 
 $id_usuario = $_SESSION['id'];
 
@@ -37,15 +37,7 @@ $oferta->set('valor_real', $valor_real);
 $oferta->set('valor_liquido', $valor_liquido);
 $oferta->set('usuario_id', $id_usuario);
 
-$uploaddir = '/var/www/uploads/';
-$uploadfile = $uploaddir . $_FILES['userfile']['name'];
-print "<pre>";
-if (move_uploaded_file($_FILES['userfile']['tmp_name'], $uploaddir . $_FILES['userfile']['name'])) {
-    $sql = $oferta->GravaOferta();
-} else {
-   echo 'Erro ao gravar';
-}
-
+$sql = $oferta->GravaOferta();
 
 //echo $sql;
 $banco->sqlQuery($sql);
