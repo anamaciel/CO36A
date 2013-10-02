@@ -88,6 +88,12 @@ class oferta{
         return $sql;
     }
     
+    
+    public function ListaFotoOferta($id_oferta) {
+        $sql = "SELECT * FROM recursos WHERE oferta_id =" + $id_oferta;
+        return $sql;
+    }
+    
     public function gravaVenda(){
         $sql = ""; 
         

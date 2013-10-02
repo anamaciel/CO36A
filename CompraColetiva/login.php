@@ -38,7 +38,7 @@
     <div class="container_12">
         <div class="grid_5">
             <h3>AINDA NÃO TENHO CADASTRO</h3>
-            <div class="text3">Fazendo seu cadastro no NOME_DO_SITE você garante a praticidade de poder adquirir produtos incrives com apenas alguns cliques.</div><br>
+            <div class="text3">Fazendo seu cadastro no OUTLET você garante a praticidade de poder adquirir produtos incrives com apenas alguns cliques.</div><br>
             <form>
                 <fieldset>
                     <div class="btns">

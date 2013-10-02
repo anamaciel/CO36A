@@ -1,10 +1,22 @@
 <script>
-    $(function(){
+    $(function() {
         // Initialize the gallery
         $('.gallery a.gal').touchTouch();
-    });  
+    });
 </script>
 
+<?php
+//ini_set('display_errors', 1);
+//ini_set('log_errors', 1);
+//error_reporting(E_ALL);
+
+
+require_once("class/funcoes.php");
+require_once("class/pdo.class.php");
+require_once("class/oferta.class.php");
+
+$banco = new cPDO();
+?>
 
 <div class="content">
     <div class="container_12">
@@ -13,35 +25,34 @@
         </div>
         <div class="clear"></div>
         <div class="gallery">
-            <div class="grid_4">
-                <a href="<?php echo $caminho; ?>images/big1.jpg" class="gal img_inner"><img src="<?php echo $caminho; ?>images/page3_img1.jpg" alt=""></a>
-            </div>
-            <div class="grid_4">
-                <a href="<?php echo $caminho; ?>images/big2.jpg" class="gal img_inner"><img src="<?php echo $caminho; ?>images/page3_img2.jpg" alt=""></a>
-            </div>
-            <div class="grid_4">
-                <a href="<?php echo $caminho; ?>images/big3.jpg" class="gal img_inner"><img src="<?php echo $caminho; ?>images/page3_img3.jpg" alt=""></a>
-            </div>
-            <div class="clear"></div>
-            <div class="grid_4">
-                <a href="<?php echo $caminho; ?>images/big4.jpg" class="gal img_inner"><img src="<?php echo $caminho; ?>images/page3_img4.jpg" alt=""></a>
-            </div>
-            <div class="grid_4">
-                <a href="<?php echo $caminho; ?>images/big5.jpg" class="gal img_inner"><img src="<?php echo $caminho; ?>images/page3_img5.jpg" alt=""></a>
-            </div>
-            <div class="grid_4">
-                <a href="<?php echo $caminho; ?>images/big6.jpg" class="gal img_inner"><img src="<?php echo $caminho; ?>images/page3_img6.jpg" alt=""></a>
-            </div>
-            <div class="clear"></div>
-            <div class="grid_4">
-                <a href="<?php echo $caminho; ?>images/big7.jpg" class="gal img_inner"><img src="<?php echo $caminho; ?>images/page3_img7.jpg" alt=""></a>
-            </div>
-            <div class="grid_4">
-                <a href="<?php echo $caminho; ?>images/big8.jpg" class="gal img_inner"><img src="<?php echo $caminho; ?>images/page3_img8.jpg" alt=""></a>
-            </div>
-            <div class="grid_4">
-                <a href="<?php echo $caminho; ?>images/big9.jpg" class="gal img_inner"><img src="<?php echo $caminho; ?>images/page3_img9.jpg" alt=""></a>
-            </div>
+
+            <?php
+            $ofertaPassada = new oferta();
+            // Setar qual é id de oferta finalizada
+            $ofertaPassada->set(status, '2');
+
+            $sql = $ofertaPassada->ListaOferta();
+
+            $counter = 0;
+
+            foreach ($banco->query($sql) as $row) {
+                $sqlFoto = $ofertaPassada->ListaFotoOferta($row['id']);
+                $row_foto = $banco->query($sqlFoto)->fetch();
+
+                $counter++;
+                ?>
+
+                <div class="grid_4">
+                    <a href="<?php echo $caminho . $row_foto['url']; ?>" class="gal img_inner"><img src="<?php echo $caminho . $row_foto['url']; ?>" alt=""></a>
+                </div>
+
+                <?php
+                if ($counter == 3) {
+                    echo "<div class=\"clear\"></div>";
+                    $counter = 0;
+                }
+            }
+            ?>
         </div>
         <div class="clear"></div>
     </div>
