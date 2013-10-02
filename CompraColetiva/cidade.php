@@ -9,6 +9,7 @@ echo $estado;
 $cidade = new cidade();
 $cidade->set(estado, $estado);
 $sql = $cidade->ListaCidadeUf();
+echo $sql;
 
 $banco = new database();
 $banco->connect();

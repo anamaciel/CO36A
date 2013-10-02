@@ -4,6 +4,7 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^site/(.*)$ index.php?pg=$1
 RewriteRule ^city/(.*)$ cidade.php
 RewriteRule ^cad/(.*)$ cadastrar.php
+RewriteRule ^edit/(.*)$ editarUsuario.php
 RewriteRule ^cadOferta/(.*)$ cad_ofertas.php
 RewriteRule ^logar/(.*)$ logar.php
 RewriteRule ^sair/(.*)$ logout.php

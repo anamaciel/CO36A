@@ -1120,6 +1120,12 @@ footer {
     margin-right: 130px;
 }
 
+.qtd_vendida{
+    float:left;
+    position: absolute;
+    margin-top: 290px;    
+}
+
 .spaceLabel {
     margin-top: 10px;
 }

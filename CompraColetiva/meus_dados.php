@@ -29,7 +29,7 @@ if ($_SESSION['id'] == '') {
                             <li>Nome: <?php echo $row_pessoa['nome']; ?></li>
                             <li>Sobrenome: <?php echo $row_pessoa['Sobrenome']; ?></li>
                             <li>Sexo: <?php echo $row_pessoa['sexo']; ?></li>
-                            <li>Nascimento: <?php echo converte_dataPg($row_pessoa['nascimento']); ?></li>
+                            <li>Nascimento: <?php echo convdata($row_pessoa['nascimento']); ?></li>
                             <li>Login: <?php echo $row_pessoa['login']; ?></li>
                         </ul>
                     </fieldset>
@@ -50,7 +50,7 @@ if ($_SESSION['id'] == '') {
                 <div class="clear"></div>
                 <div class="btns">
                     <div class="btn_cad">
-                        <a href="<?php echo $caminho; ?>site/cadastro/" class="btn">Alterar Dados</a>
+                        <a href="<?php echo $caminho; ?>site/editCadastro/<?php echo $row_pessoa['id']; ?>" class="btn">Alterar Dados</a>
                     </div>
                     <div class="clear"></div>
                 </div>

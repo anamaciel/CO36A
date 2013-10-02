@@ -136,7 +136,9 @@ $banco = new cPDO();
                     //echo $sql;
                     foreach ($banco->query($sql) as $row) {
                         ?>
-                        <li class="link-li" onclick="location.href = '<?php echo $caminho; ?>site/ofertaDetalhe/<?php echo $row['id']; ?>'"><?php echo $row['nome']; ?></li>
+                        <li class="link-li" onclick="location.href = '<?php echo $caminho; ?>site/ofertaDetalhe/<?php echo $row['id']; ?>'"><?php echo $row['nome']; ?>
+                        <a class="btn" id="bEnviar" name="bEnviar">Enviar</a>
+                        </li>
                         <?php
                     }
                     ?>

@@ -11,7 +11,7 @@ require_once("class/pdo.class.php");
 require_once("caminho.php");
 
 $atual = ($_GET['pg'] != '') ? $_GET['pg'] : 'home';
-$permissao = array('index', 'login', 'home', 'termos', 'perguntas', 'cadastro', 'contato', 'ofertas', 'ofertas_passadas', 'ofertaDetalhe','conta','minhas_compras','minhas_ofertas','meus_dados','pedido', 'minha_oferta_detalhe','parceiros', 'como_funciona', 'termos');
+$permissao = array('index', 'login', 'home', 'termos', 'perguntas', 'cadastro', 'contato', 'ofertas', 'ofertas_passadas', 'ofertaDetalhe','conta','minhas_compras','minhas_ofertas','meus_dados','pedido', 'minha_oferta_detalhe','parceiros', 'como_funciona', 'termos', 'editCadastro');
 
 if (substr_count($atual, '/') > 0) {
     $atual = explode('/', $atual);
@@ -107,11 +107,10 @@ if (substr_count($atual, '/') > 0) {
                                                                     <li><a href="#">Team</a></li>
                                                                 </ul>-->
                             </li>
-                            <!--<li><a href="<?php echo $caminho; ?>site/ofertas_passadas">Ofertas Passadas</a></li>-->
-                            <li><a href="<?php echo $caminho; ?>site/parceiros">Perguntas Frequentes</a></li>
+                            <li><a href="<?php echo $caminho; ?>site/ofertas_passadas">Ofertas Passadas</a></li>
                             <li><a href="<?php echo $caminho; ?>site/parceiros">Seja Parceiro</a></li>
                             <li><a href="<?php echo $caminho; ?>site/cadastro">Cadastro</a></li>
-                            <!--<li><a href="<?php // echo $caminho; ?>site/contato">Contato</a></li>-->
+                            <li><a href="<?php echo $caminho; ?>site/contato">Contato</a></li>
                         </ul>
                     </nav>
                     <div class="clear"></div>
@@ -139,14 +138,13 @@ if (substr_count($atual, '/') > 0) {
                     <div class="grid_2 prefix_2">
                         <ul>
                             <li><a href="<?php echo $caminho; ?>site/ofertas">Ofertas</a></li>
-                            <!--<li><a href="<?php echo $caminho; ?>site/ofertas_passadas">Ofertas Passadas</a></li>-->
-                            <li><a href="<?php echo $caminho; ?>site/como_funciona">Como Funciona</a></li>
+                            <li><a href="<?php echo $caminho; ?>site/ofertas_passadas">Ofertas Passadas</a></li>
                         </ul>
                     </div>
                     <div class="grid_2">
                         <ul>
-                            <!--<li><a href="<?php echo $caminho; ?>site/cadastro">Cadastro</a></li>-->
-                            <!--<li><a href="<?php echo $caminho; ?>site/como_funciona">Como Funciona</a></li>-->
+                            <li><a href="<?php echo $caminho; ?>site/cadastro">Cadastro</a></li>
+                            <li><a href="<?php echo $caminho; ?>site/como_funciona">Como Funciona</a></li>
                         </ul>
                     </div>
                     <div class="grid_2">
@@ -155,11 +153,11 @@ if (substr_count($atual, '/') > 0) {
                             <li><a href="<?php echo $caminho; ?>site/termos">Termos de Uso</a></li>
                         </ul>
                     </div>
-<!--                    <div class="grid_2" >
+                    <div class="grid_2" >
                         <h4><a href="<?php echo $caminho; ?>site/contato">Contato:</a></h4>
-                        TEL: +55 44 3523-4156<br><a href="#">contato@nome_site.com.br</a>
+                        TEL: +55 44 3523-4156<br><a href="#">contato@outletmix.com.br</a>
 
-                    </div>-->
+                    </div>
                     <div class="clear"></div>
                 </div>
             </div>

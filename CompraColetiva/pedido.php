@@ -18,7 +18,7 @@ $id = anti_injection($id);
 
 $banco = new cPDO();
 
-$sql = "SELECT v.*,o.* FROM oferta o, venda v WHERE v.oferta_id = o.id AND v.id =".$id;
+$sql = "SELECT v.id as id_venda, v.status as status_venda,o.* FROM oferta o, venda v WHERE v.oferta_id = o.id AND v.id =".$id;
 
 $row = $banco->query($sql)->fetch();
 ?>
@@ -29,9 +29,10 @@ $row = $banco->query($sql)->fetch();
                     <fieldset>
                         <h3>DETALHES DO PEDIDO</h3>
                         <ul>
+                            <li>Código da venda: <?php echo $row['id_venda']; ?></li>
                             <li>Oferta: <?php echo $row['nome']; ?></li>
                             <li>Valor: <?php echo $row['valor_liquido']; ?></li>
-                            <li>Status: <?php echo $row['status']; ?></li>
+                            <li>Status: <?php echo $row['status_venda']; ?></li>
                         </ul>
                     </fieldset>
                 </div>

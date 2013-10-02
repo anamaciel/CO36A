@@ -57,6 +57,8 @@ $row_pessoa = $banco->query($sql)->fetch();
                     <div class="tempo">Tempo restante</div>
                     <div id="tempoRestante"></div>
                     <img src="<?php echo $caminho; ?>images/page2_img1.jpg" alt="" class="img_inner fleft">
+                    <div class="qtd_vendida">Qtd Vendida: <?php echo $row_oferta['qtd_vendida'] ?></div>
+                    <div></div>
                     <p class="text1"><?php echo $row_oferta['descricao']; ?></p>
                     <input type="hidden" value='<?php echo $row_oferta['id']; ?>'>
                     <?php

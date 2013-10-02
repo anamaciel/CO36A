@@ -52,14 +52,14 @@ class usuario {
             $tipo = " AND tipo='$this->tipo' ";
         }
 
-        $sql = "SELECT * FROM usuario u WHERE u.id > 0 $nome $sobrenome $sexo $nascimento $email $senha $tipo ORDER BY nome ASC;";
+        $sql = "SELECT u.*, e.* FROM usuario u LEFT JOIN endereco e ON e.usuario_id = u.id WHERE u.id > 0 $nome $sobrenome $sexo $nascimento $email $senha $tipo ORDER BY nome ASC;";
         return $sql;
     }
 
     public function GravaUsuario() {
         if ($this->id > 0) {
             if ($this->nome != '') {
-                $nome = ", nome='$this->nome' ";
+                $nome = " nome='$this->nome' ";
             }
             if ($this->sobrenome != '') {
                 $sobrenome = ", sobrenome='$this->sobrenome' ";
@@ -71,7 +71,7 @@ class usuario {
                 $nascimento = ", nascimento='$this->nascimento' ";
             }
             if ($this->email != '') {
-                $email = ", email='$this->email' ";
+                $email = ", login='$this->email' ";
             }
             if ($this->senha != '') {
                 $senha = ", senha='$this->senha' ";
@@ -83,7 +83,7 @@ class usuario {
             $sql = "UPDATE usuario SET $nome $sobrenome $sexo $nascimento $email $senha $tipo WHERE id='$this->id' LIMIT 1";
             return $sql;
         } else {
-            $sql = "INSERT INTO usuario (id, nome, sobrenome, sexo, nascimento, email, senha, tipo)
+            $sql = "INSERT INTO usuario (id, nome, sobrenome, sexo, nascimento, login, senha, tipo)
             VALUES ('', '$this->nome', '$this->sobrenome', '$this->sexo', '$this->nascimento', '$this->email', '$this->senha', '$this->tipo')";
         }
         return $sql;

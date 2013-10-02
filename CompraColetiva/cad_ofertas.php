@@ -37,8 +37,16 @@ $oferta->set('valor_real', $valor_real);
 $oferta->set('valor_liquido', $valor_liquido);
 $oferta->set('usuario_id', $id_usuario);
 
+$uploaddir = '/var/www/uploads/';
+$uploadfile = $uploaddir . $_FILES['userfile']['name'];
+print "<pre>";
+if (move_uploaded_file($_FILES['userfile']['tmp_name'], $uploaddir . $_FILES['userfile']['name'])) {
+    $sql = $oferta->GravaOferta();
+} else {
+   echo 'Erro ao gravar';
+}
 
-$sql = $oferta->GravaOferta();
+
 //echo $sql;
 $banco->sqlQuery($sql);
 
